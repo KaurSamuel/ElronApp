@@ -58,9 +58,18 @@
   <ItemGroup>
     <Compile Include="ApiSecvice.cs" />
     <Compile Include="CustomAdapter.cs" />
+    <Compile Include="SWapiClasses\Film.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="SWapiClasses\People.cs" />
+    <Compile Include="SWapiClasses\Planet.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SWapiClasses\SharpEntity.cs" />
+    <Compile Include="SWapiClasses\SharpEntityResults.cs" />
+    <Compile Include="SWapiClasses\SharpTrooperCore.cs" />
+    <Compile Include="SWapiClasses\Specie.cs" />
+    <Compile Include="SWapiClasses\Starship.cs" />
+    <Compile Include="SWapiClasses\Vehicle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -106,12 +115,12 @@
     <AndroidResource Include="Resources\layout-land\activity_main.axml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\ListOfSelectedOption.axml">
+    <AndroidResource Include="Resources\layout\ListOfSelectedOption_activity.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\ListOfSelectedThingAttributes.axml">
+    <AndroidResource Include="Resources\layout\ListOfSelectedThingAttributes_activity.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

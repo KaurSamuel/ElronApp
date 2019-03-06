@@ -16,6 +16,7 @@ namespace StarWarsApi
             SetContentView(Resource.Layout.activity_main);
             dynamic x = ApiSecvice.Get_Single("people/");
 
+
         }
     }
     public class listActivity : ListActivity

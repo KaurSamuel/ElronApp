@@ -2351,14 +2351,14 @@ namespace StarWarsApi
 			// aapt resource value: 0x7f080034
 			public const int FUNCTION = 2131230772;
 			
-			// aapt resource value: 0x7f08008e
-			public const int Films = 2131230862;
+			// aapt resource value: 0x7f08008f
+			public const int Films = 2131230863;
 			
 			// aapt resource value: 0x7f080035
 			public const int META = 2131230773;
 			
-			// aapt resource value: 0x7f08008c
-			public const int People = 2131230860;
+			// aapt resource value: 0x7f08008d
+			public const int People = 2131230861;
 			
 			// aapt resource value: 0x7f08008b
 			public const int Planets = 2131230859;
@@ -2369,14 +2369,14 @@ namespace StarWarsApi
 			// aapt resource value: 0x7f080037
 			public const int SYM = 2131230775;
 			
-			// aapt resource value: 0x7f080090
-			public const int Species = 2131230864;
+			// aapt resource value: 0x7f080091
+			public const int Species = 2131230865;
 			
-			// aapt resource value: 0x7f080092
-			public const int StarShips = 2131230866;
+			// aapt resource value: 0x7f080093
+			public const int StarShips = 2131230867;
 			
-			// aapt resource value: 0x7f080094
-			public const int Vehicles = 2131230868;
+			// aapt resource value: 0x7f080095
+			public const int Vehicles = 2131230869;
 			
 			// aapt resource value: 0x7f0800ab
 			public const int action0 = 2131230891;
@@ -2594,23 +2594,23 @@ namespace StarWarsApi
 			// aapt resource value: 0x7f08005f
 			public const int image = 2131230815;
 			
-			// aapt resource value: 0x7f08008d
-			public const int imageView1 = 2131230861;
+			// aapt resource value: 0x7f080090
+			public const int imageView_Films = 2131230864;
 			
-			// aapt resource value: 0x7f08008f
-			public const int imageView2 = 2131230863;
+			// aapt resource value: 0x7f08008e
+			public const int imageView_People = 2131230862;
 			
-			// aapt resource value: 0x7f080091
-			public const int imageView3 = 2131230865;
+			// aapt resource value: 0x7f08008c
+			public const int imageView_Planets = 2131230860;
 			
-			// aapt resource value: 0x7f080093
-			public const int imageView4 = 2131230867;
+			// aapt resource value: 0x7f080092
+			public const int imageView_Species = 2131230866;
 			
-			// aapt resource value: 0x7f080095
-			public const int imageView5 = 2131230869;
+			// aapt resource value: 0x7f080094
+			public const int imageView_Starships = 2131230868;
 			
 			// aapt resource value: 0x7f080096
-			public const int imageView6 = 2131230870;
+			public const int imageView_Vehicles = 2131230870;
 			
 			// aapt resource value: 0x7f0800b5
 			public const int info = 2131230901;
@@ -2637,7 +2637,7 @@ namespace StarWarsApi
 			public const int listMode = 2131230749;
 			
 			// aapt resource value: 0x7f0800a6
-			public const int listTextView1 = 2131230886;
+			public const int listOfSelectedOption_TextView = 2131230886;
 			
 			// aapt resource value: 0x7f080061
 			public const int list_item = 2131230817;
@@ -2739,7 +2739,7 @@ namespace StarWarsApi
 			public const int scrollable = 2131230805;
 			
 			// aapt resource value: 0x7f0800a5
-			public const int searchView1 = 2131230885;
+			public const int searchBar = 2131230885;
 			
 			// aapt resource value: 0x7f080080
 			public const int search_badge = 2131230848;
@@ -3092,10 +3092,10 @@ namespace StarWarsApi
 			public const int design_text_input_password_icon = 2130968616;
 			
 			// aapt resource value: 0x7f040029
-			public const int ListOfSelectedOption = 2130968617;
+			public const int ListOfSelectedOption_activity = 2130968617;
 			
 			// aapt resource value: 0x7f04002a
-			public const int ListOfSelectedThingAttributes = 2130968618;
+			public const int ListOfSelectedThingAttributes_activity = 2130968618;
 			
 			// aapt resource value: 0x7f04002b
 			public const int notification_action = 2130968619;

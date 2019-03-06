@@ -11,7 +11,7 @@
 		android:minHeight="25px"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:id="@+id/searchView1" />
+		android:id="@+id/searchBar" />
 	<TextView
 		android:text="Medium Text"
 		android:textAppearance="?android:attr/textAppearanceMedium"
@@ -19,7 +19,7 @@
 		android:layout_height="wrap_content"
 		android:minWidth="25px"
 		android:minHeight="25px"
-		android:id="@+id/listTextView1" />
+		android:id="@+id/listOfSelectedOption_TextView" />
 
 </LinearLayout>
 </ScrollView>

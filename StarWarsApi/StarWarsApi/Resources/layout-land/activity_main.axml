@@ -3,91 +3,89 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"    
-        android:rowCount="4"
-        android:columnCount="10"
-        android:orientation="horizontal">
-     <Button
-            android:text="Planets"
-            android:textSize="16dip"
-            android:layout_row="0"
-            android:layout_column="0"
-			android:id="@+id/Planets"
-			/>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"    
+    android:rowCount="4"
+    android:columnCount="10"
+    android:orientation="horizontal">
+    <Button
+        android:text="Planets"
+        android:textSize="16dip"
+        android:layout_row="0"
+        android:layout_column="0"
+		android:id="@+id/Planets"/>
 	<ImageView
 		android:src="@drawable/StarWarsPlanets"
-		android:id="@+id/imageView5"
+		android:id="@+id/imageView_Planets"
 		android:layout_row="0"
 		android:layout_column="0"/>
-     <Button
-            android:text="People"
-            android:textSize="16dip"
-            android:layout_row="0"        
-            android:layout_column="1"
-			android:id="@+id/People"
-			/>
-		<ImageView
+    <Button
+        android:text="People"
+        android:textSize="16dip"
+        android:layout_row="0"        
+        android:layout_column="1"
+		android:id="@+id/People"/>
+	<ImageView
 		android:src="@drawable/StarWarsPeople"
-		android:id="@+id/imageView1"
+		android:id="@+id/imageView_People"
 		android:layout_row="0"
 		android:layout_column="1"
 		android:maxWidth="10sp"
 		android:maxHeight="10px"
 		android:layout_marginBottom="0.0dp"
 		android:layout_marginLeft="0.0dp" />
-     <Space
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_width="200dp"        
-            android:layout_height="95dp"/> 
-     <Button
-            android:text="Films"
-            android:textSize="16dip"
-            android:layout_row="2"        
-            android:layout_column="0"
-			android:id="@+id/Films"/>
+    <Space
+		android:layout_row="1"
+		android:layout_column="0"
+		android:layout_width="200dp"        
+		android:layout_height="95dp"/> 
+    <Button
+		android:text="Films"
+		android:textSize="16dip"
+		android:layout_row="2"        
+		android:layout_column="0"
+		android:id="@+id/Films"/>
 	<ImageView
 		android:src="@drawable/StarWarsFilms"
-		android:id="@+id/imageView2"
+		android:id="@+id/imageView_Films"
 		android:layout_row="2"
 		android:layout_column="0"/>
-     <Button
-            android:text="Species"
-            android:textSize="16dip"        
-            android:layout_row="2"        
-            android:layout_column="1"
-			android:id="@+id/Species"/>
+    <Button
+        android:text="Species"
+        android:textSize="16dip"        
+        android:layout_row="2"        
+        android:layout_column="1"
+		android:id="@+id/Species"/>
 	<ImageView
 		android:src="@drawable/StarWarsSpecies"
-		android:id="@+id/imageView3"
+		android:id="@+id/imageView_Species"
 		android:layout_row="2"
 		android:layout_column="1"/>
-     <Space
-            android:layout_row="3"
-            android:layout_column="2"
-            android:layout_width="35dp"        
-            android:layout_height="200dp"/>   
-     <Button
-            android:text="StarShips"
-            android:textSize="16dip"
-            android:layout_row="0"        
-            android:layout_column="3"
-			android:id="@+id/StarShips"/>
+    <Space
+        android:layout_row="3"
+        android:layout_column="2"
+        android:layout_width="35dp"        
+        android:layout_height="200dp"/>   
+    <Button
+        android:text="StarShips"
+        android:textSize="16dip"
+        android:layout_row="0"        
+        android:layout_column="3"
+		android:id="@+id/StarShips"/>
 	<ImageView
 		android:src="@drawable/StarWarsStarships"
-		android:id="@+id/imageView4"
+		android:id="@+id/imageView_Starships"
 		android:layout_row="0"
 		android:layout_column="3"/>
-     <Button
-            android:text="Vehicles"
-            android:textSize="16dip"
-            android:layout_row="2"        
-            android:layout_column="3"
-			android:id="@+id/Vehicles"/>
+    <Button
+        android:text="Vehicles"
+        android:textSize="16dip"
+        android:layout_row="2"        
+        android:layout_column="3"
+		android:id="@+id/Vehicles"/>
 	<ImageView
 		android:src="@drawable/StarWarsVehicles"
-		android:id="@+id/imageView6"
+		android:id="@+id/imageView_Vehicles"
 		android:layout_row="2"
 		android:layout_column="3"/>
 </GridLayout>
