@@ -41,6 +41,8 @@ namespace StarWarsApi
             buttonVehicles.Click += ButtonVehicles_Click;
         }
 
+        #region Buttons
+
         public void ButtonPlanets_Click(object sender, EventArgs e)
         {
             buttonName = buttonPlanets.Text;
@@ -88,5 +90,6 @@ namespace StarWarsApi
             ListActivity.PutExtra("ButtonName", buttonName);
             StartActivity(ListActivity);
         }
+        #endregion
     }
 }

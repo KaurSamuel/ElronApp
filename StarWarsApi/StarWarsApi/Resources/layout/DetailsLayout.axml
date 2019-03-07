@@ -16,7 +16,7 @@
 			android:textAppearance="?android:attr/textAppearanceLarge"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:id="@+id/textView1"
+			android:id="@+id/textView_nameBig"
 			android:layout_marginLeft="0.0dp"
 			android:gravity="center_vertical|center"
 			android:scaleX="1.5"
