@@ -83,12 +83,14 @@ namespace StarWarsApi
             ListView listview = FindViewById<ListView>(Resource.Id.listView_selectedOption);
             listview.Adapter = new CustomAdapter(this, OptionList);
 
-            //var listView = FindViewById<ListView>(Resource.Id.listView_selectedOption);
-            //ListView.ItemClick += delegate (object sender, AdapterView.ItemClickEventArgs args)
-            //  {
-            //      Toast.MakeText(Application, ((TextView)args.View).Text, ToastLength.Short).Show();
-            //  };
-
+            listview.ItemClick += delegate (object sender, AdapterView.ItemClickEventArgs args)
+              {
+                  var item = listview.Adapter.GetItem(args.Position).ToString();
+                  var ItemActivity = new Intent(this, typeof(ItemActivity));
+                  ItemActivity.PutExtra("OptionName", option);
+                  ItemActivity.PutExtra("ItemName", item);
+                  StartActivity(ItemActivity);
+              };
             // Create your application here
         }
     }

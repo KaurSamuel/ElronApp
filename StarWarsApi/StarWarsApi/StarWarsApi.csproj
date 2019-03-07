@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="ApiSecvice.cs" />
     <Compile Include="CustomAdapter.cs" />
+    <Compile Include="ItemActivity.cs" />
     <Compile Include="OptionListActivity.cs" />
     <Compile Include="SWapiClasses\Film.cs" />
     <Compile Include="MainActivity.cs" />
