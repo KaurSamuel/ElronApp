@@ -47,35 +47,35 @@ namespace StarWarsApi
                     }
                     break;
                 case ("Films"):
-                    var filmList = core.GetAllPeople().results;
+                    var filmList = core.GetAllFilms().results;
 
-                    foreach (var person in filmList)
+                    foreach (var film in filmList)
                     {
-                        OptionList.Add(person.name);
+                        OptionList.Add(film.title);
                     }
                     break;
                 case ("Species"):
-                    var speciesList = core.GetAllPeople().results;
+                    var speciesList = core.GetAllSpecies().results;
 
-                    foreach (var person in speciesList)
+                    foreach (var species in speciesList)
                     {
-                        OptionList.Add(person.name);
+                        OptionList.Add(species.name);
                     }
                     break;
-                case ("Starships"):
-                    var starshipList = core.GetAllPeople().results;
+                case ("StarShips"):
+                    var starshipList = core.GetAllStarships().results;
 
-                    foreach (var person in starshipList)
+                    foreach (var starship in starshipList)
                     {
-                        OptionList.Add(person.name);
+                        OptionList.Add(starship.name);
                     }
                     break;
                 case ("Vehicles"):
-                    var vehicleList = core.GetAllPeople().results;
+                    var vehicleList = core.GetAllVehicles().results;
 
-                    foreach (var person in vehicleList)
+                    foreach (var vehicle in vehicleList)
                     {
-                        OptionList.Add(person.name);
+                        OptionList.Add(vehicle.name);
                     }
                     break;
             };
