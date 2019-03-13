@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using SharpTrooper.Core;
+using SharpTrooper.Entities;
 
 namespace StarWarsApi
 {
@@ -25,18 +26,26 @@ namespace StarWarsApi
             SharpTrooperCore core = new SharpTrooperCore();
 
             List<string> OptionList = new List<string>();
+            List<SharpEntity> _optionList = new List<SharpEntity>();
+            List<string> nameList = new List<string>();
 
             string option = Intent.GetSerializableExtra("ButtonName").ToString();
 
             switch (option)
             {
                 case ("Planets"):
-                    var planetList = core.GetAllPlanets().results;
-
-                    foreach (var planet in planetList)
+                    for (int i = 1; i <= 61; i++)
                     {
-                        OptionList.Add(planet.name);
-                    };
+                        var item=core.GetPlanet(i.ToString());
+                        _optionList.Add(item);
+                    }
+
+                    //var planetList = core.GetAllPlanets().results;
+
+                    //foreach (var planet in planetList)
+                    //{
+                    //    OptionList.Add(planet.name);
+                    //};
                     break;
                 case ("People"):
                     var peopleList = core.GetAllPeople().results;
@@ -80,8 +89,13 @@ namespace StarWarsApi
                     break;
             };
 
+
+            foreach (Planet item in _optionList)
+            {
+                nameList.Add(item.name);
+            }
             ListView listview = FindViewById<ListView>(Resource.Id.listView_selectedOption);
-            listview.Adapter = new CustomAdapter(this, OptionList);
+            listview.Adapter = new CustomAdapter(this, nameList);
 
             listview.ItemClick += delegate (object sender, AdapterView.ItemClickEventArgs args)
               {

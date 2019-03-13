@@ -56,11 +56,12 @@ namespace StarWarsApi
             buttonName = buttonPeople.Text;
             var ListActivity = new Intent(this, typeof(OptionListActivity));
             ListActivity.PutExtra("ButtonName", buttonName);
-            using (UserDialogs.Instance.Loading("wait..."))
-            {
+            //kauri kood
+            //using (UserDialogs.Instance.Loading("wait..."))
+            //{
 
-                // Do something 
-            }
+            //    // Do something 
+            //}
             StartActivity(ListActivity);
         }
 

@@ -29,7 +29,7 @@ namespace StarWarsApi
 
             List<string> itemList = new List<string>();
             SharpTrooperCore core = new SharpTrooperCore();
-            core.GetSingleByUrl<SharpTrooper.Entities.SharpEntity>("swapi.co/api/"+option+"/"+item);
+            core.GetSingleByUrl<SharpTrooper.Entities.SharpEntity>("swapi.co/api/"+option.ToLower()+"/"+item);
 
             // Create your application here
         }
