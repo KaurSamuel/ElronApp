@@ -42,29 +42,38 @@ namespace SharpTrooper.Core
         private string Request(string url, HttpMethod httpMethod, string data, bool isProxyEnabled)
         {
             string result = string.Empty;
-            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-            httpWebRequest.Method = httpMethod.ToString();
-
-            if (!String.IsNullOrEmpty(_proxyName))
+            try
             {
-                httpWebRequest.Proxy = new WebProxy(_proxyName, 80);
-                httpWebRequest.Proxy.Credentials = CredentialCache.DefaultCredentials;
-            }
+                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpWebRequest.Method = httpMethod.ToString();
 
-            if (data != null)
+                if (!String.IsNullOrEmpty(_proxyName))
+                {
+                    httpWebRequest.Proxy = new WebProxy(_proxyName, 80);
+                    httpWebRequest.Proxy.Credentials = CredentialCache.DefaultCredentials;
+                }
+
+                if (data != null)
+                {
+                    byte[] bytes = UTF8Encoding.UTF8.GetBytes(data.ToString());
+                    httpWebRequest.ContentLength = bytes.Length;
+                    Stream stream = httpWebRequest.GetRequestStream();
+                    stream.Write(bytes, 0, bytes.Length);
+                    stream.Dispose();
+                }
+
+
+
+                HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                StreamReader reader = new StreamReader(httpWebResponse.GetResponseStream());
+                result = reader.ReadToEnd();
+                reader.Dispose();
+            }
+            catch (Exception)
             {
-                byte[] bytes = UTF8Encoding.UTF8.GetBytes(data.ToString());
-                httpWebRequest.ContentLength = bytes.Length;
-                Stream stream = httpWebRequest.GetRequestStream();
-                stream.Write(bytes, 0, bytes.Length);
-                stream.Dispose();
+
+                throw;
             }
-
-            HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-            StreamReader reader = new StreamReader(httpWebResponse.GetResponseStream());
-            result = reader.ReadToEnd();
-            reader.Dispose();
-
             return result;
         }
 
