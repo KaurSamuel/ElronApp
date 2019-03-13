@@ -8,7 +8,7 @@ using Android.Content;
 
 namespace StarWarsApi
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme")]
     public class MainActivity : AppCompatActivity
     {
         Button buttonPlanets;
@@ -56,11 +56,6 @@ namespace StarWarsApi
             buttonName = buttonPeople.Text;
             var ListActivity = new Intent(this, typeof(OptionListActivity));
             ListActivity.PutExtra("ButtonName", buttonName);
-            using (UserDialogs.Instance.Loading("wait..."))
-            {
-
-                // Do something 
-            }
             StartActivity(ListActivity);
         }
 
