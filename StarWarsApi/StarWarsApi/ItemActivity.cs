@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using SharpTrooper.Core;
+using SharpTrooper.Entities;
 
 namespace StarWarsApi
 {
@@ -23,15 +24,18 @@ namespace StarWarsApi
 
             string option = Intent.GetSerializableExtra("OptionName").ToString();
             string item = Intent.GetSerializableExtra("ItemName").ToString();
+            int index = int.Parse(Intent.GetSerializableExtra("ItemIndex").ToString());
+            index++;
 
             TextView nameBig = FindViewById<TextView>(Resource.Id.textView_nameBig);
             nameBig.Text = item;
 
             List<string> itemList = new List<string>();
             SharpTrooperCore core = new SharpTrooperCore();
-            core.GetSingleByUrl<SharpTrooper.Entities.SharpEntity>("swapi.co/api/"+option+"/"+item);
+            var result=core.GetSingleByUrl<People>("https://swapi.co/api/"+option.ToLower()+"/"+index);
 
-            // Create your application here
+
+            index = 0;
         }
     }
 }

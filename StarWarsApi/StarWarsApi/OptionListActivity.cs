@@ -86,9 +86,12 @@ namespace StarWarsApi
             listview.ItemClick += delegate (object sender, AdapterView.ItemClickEventArgs args)
               {
                   var item = listview.Adapter.GetItem(args.Position).ToString();
+                  int index = OptionList.FindIndex(x => x == item);
                   var ItemActivity = new Intent(this, typeof(ItemActivity));
                   ItemActivity.PutExtra("OptionName", option);
                   ItemActivity.PutExtra("ItemName", item);
+                  ItemActivity.PutExtra("ItemIndex", index);
+                  ItemActivity.PutExtra("ItemList", OptionList);
                   StartActivity(ItemActivity);
               };
             // Create your application here
