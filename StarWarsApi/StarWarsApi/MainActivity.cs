@@ -5,10 +5,11 @@ using Android.Runtime;
 using Android.Widget;
 using System;
 using Android.Content;
+using Acr.UserDialogs;
 
 namespace StarWarsApi
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme")]
     public class MainActivity : AppCompatActivity
     {
         Button buttonPlanets;
@@ -17,6 +18,8 @@ namespace StarWarsApi
         Button buttonStarships;
         Button buttonFilms;
         Button buttonVehicles;
+        ImageView imgplanets;
+        ImageView imgpeople;
         string buttonName;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -32,6 +35,8 @@ namespace StarWarsApi
             buttonSpecies = FindViewById<Button>(Resource.Id.Species);
             buttonStarships = FindViewById<Button>(Resource.Id.StarShips);
             buttonVehicles = FindViewById<Button>(Resource.Id.Vehicles);
+            imgplanets = FindViewById<ImageView>(Resource.Id.imageView_Planets);
+            imgpeople = FindViewById<ImageView>(Resource.Id.imageView_People);
 
             buttonPlanets.Click += ButtonPlanets_Click;
             buttonPeople.Click += ButtonPeople_Click;
@@ -39,16 +44,24 @@ namespace StarWarsApi
             buttonSpecies.Click += ButtonSpecies_Click;
             buttonStarships.Click += ButtonStarships_Click;
             buttonVehicles.Click += ButtonVehicles_Click;
+            imgplanets.Click += ButtonPlanets_Click;
+            imgpeople.Click += ButtonPeople_Click;
+            UserDialogs.Init(this); 
         }
 
         #region Buttons
 
         public void ButtonPlanets_Click(object sender, EventArgs e)
         {
-            buttonName = buttonPlanets.Text;
-            var ListActivity = new Intent(this, typeof(OptionListActivity));
-            ListActivity.PutExtra("ButtonName", buttonName);
-            StartActivity(ListActivity);
+            using (UserDialogs.Instance.Loading("wait..."))
+            {
+                buttonName = buttonPlanets.Text;
+                var ListActivity = new Intent(this, typeof(OptionListActivity));
+                ListActivity.PutExtra("ButtonName", buttonName);
+                StartActivity(ListActivity);
+                
+            }
+            
         }
 
         public void ButtonPeople_Click(object sender, EventArgs e)
@@ -56,12 +69,6 @@ namespace StarWarsApi
             buttonName = buttonPeople.Text;
             var ListActivity = new Intent(this, typeof(OptionListActivity));
             ListActivity.PutExtra("ButtonName", buttonName);
-            //kauri kood
-            //using (UserDialogs.Instance.Loading("wait..."))
-            //{
-
-            //    // Do something 
-            //}
             StartActivity(ListActivity);
         }
 

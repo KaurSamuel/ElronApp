@@ -34,7 +34,6 @@ namespace StarWarsApi
             SharpTrooperCore core = new SharpTrooperCore();
             var result=core.GetSingleByUrl<People>("https://swapi.co/api/"+option.ToLower()+"/"+index);
 
-
             index = 0;
         }
     }
