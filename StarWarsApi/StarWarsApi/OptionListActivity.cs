@@ -25,19 +25,23 @@ namespace StarWarsApi
 
             SharpTrooperCore core = new SharpTrooperCore();
 
-            List<string> OptionList = new List<string>();
-            List<SharpEntity> _optionList = new List<SharpEntity>();
             List<string> nameList = new List<string>();
+            List<SharpEntity> _optionList = new List<SharpEntity>();
+            //List<string> nameList = new List<string>();
 
             string option = Intent.GetSerializableExtra("ButtonName").ToString();
 
             switch (option)
             {
                 case ("Planets"):
-                    for (int i = 1; i <= 61; i++)
+                    var count=core.GetAllPlanets().count;
+                    for (int i = 2; i <= count; i++)
                     {
-                        var item=core.GetPlanet(i.ToString());
-                        _optionList.Add(item);
+                        _optionList.Add(core.GetPlanet(i.ToString()));
+                    }
+                    foreach (Planet item in _optionList)
+                    {
+                        nameList.Add(item.name);
                     }
 
                     //var planetList = core.GetAllPlanets().results;
@@ -48,64 +52,79 @@ namespace StarWarsApi
                     //};
                     break;
                 case ("People"):
-                    var peopleList = core.GetAllPeople().results;
-
-                    foreach (var person in peopleList)
+                    count = core.GetAllPeople().count;
+                    for (int i = 2; i <= count; i++)
                     {
-                        OptionList.Add(person.name);
+                        _optionList.Add(core.GetPeople(i.ToString()));
+                    }
+                    foreach (People item in _optionList)
+                    {
+                        if (item != null)
+                            nameList.Add(item.name);
                     }
                     break;
                 case ("Films"):
-                    var filmList = core.GetAllFilms().results;
-
-                    foreach (var film in filmList)
+                    count = core.GetAllFilms().count;
+                    for (int i = 1; i <= count; i++)
                     {
-                        OptionList.Add(film.title);
+                        _optionList.Add(core.GetFilm(i.ToString()));
+                    }
+                    foreach (Film item in _optionList)
+                    {
+                        if (item != null)
+                            nameList.Add(item.title);
                     }
                     break;
                 case ("Species"):
-                    var speciesList = core.GetAllSpecies().results;
-
-                    foreach (var species in speciesList)
+                    count = core.GetAllSpecies().count;
+                    for (int i = 1; i <= count; i++)
                     {
-                        OptionList.Add(species.name);
+                        _optionList.Add(core.GetSpecie(i.ToString()));
+                    }
+                    foreach (Specie item in _optionList)
+                    {
+                        if (item != null)
+                            nameList.Add(item.name);
                     }
                     break;
                 case ("StarShips"):
-                    var starshipList = core.GetAllStarships().results;
-
-                    foreach (var starship in starshipList)
+                    count = core.GetAllStarships().count;
+                    for (int i = 2; i <= count; i++)
                     {
-                        OptionList.Add(starship.name);
+                        _optionList.Add(core.GetStarship(i.ToString()));
+                    }
+                    foreach (Starship item in _optionList)
+                    {
+                        if (item != null)
+                            nameList.Add(item.name);
                     }
                     break;
                 case ("Vehicles"):
-                    var vehicleList = core.GetAllVehicles().results;
-
-                    foreach (var vehicle in vehicleList)
+                    count = core.GetAllVehicles().count;
+                    for (int i = 1; i <= count; i++)
                     {
-                        OptionList.Add(vehicle.name);
+                        _optionList.Add(core.GetVehicle(i.ToString()));
+                    }
+                    foreach (Vehicle item in _optionList)
+                    {
+                        if (item != null)
+                            nameList.Add(item.name);
                     }
                     break;
             };
-
-
-            foreach (Planet item in _optionList)
-            {
-                nameList.Add(item.name);
-            }
+            
             ListView listview = FindViewById<ListView>(Resource.Id.listView_selectedOption);
             listview.Adapter = new CustomAdapter(this, nameList);
 
             listview.ItemClick += delegate (object sender, AdapterView.ItemClickEventArgs args)
               {
                   var item = listview.Adapter.GetItem(args.Position).ToString();
-                  int index = OptionList.FindIndex(x => x == item);
+                  int index = nameList.FindIndex(x => x == item);
                   var ItemActivity = new Intent(this, typeof(ItemActivity));
                   ItemActivity.PutExtra("OptionName", option);
                   ItemActivity.PutExtra("ItemName", item);
                   ItemActivity.PutExtra("ItemIndex", index);
-                  ItemActivity.PutExtra("ItemList", OptionList);
+                  //ItemActivity.PutExtra("ItemList", OptionList);
                   StartActivity(ItemActivity);
               };
             // Create your application here

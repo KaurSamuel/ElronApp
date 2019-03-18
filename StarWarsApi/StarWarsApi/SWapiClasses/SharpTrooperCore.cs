@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Net;
 using System.Text;
 using System.IO;
 using SharpTrooper.Entities;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.Collections.Specialized;
 
 namespace SharpTrooper.Core
@@ -42,40 +39,40 @@ namespace SharpTrooper.Core
         private string Request(string url, HttpMethod httpMethod, string data, bool isProxyEnabled)
         {
             string result = string.Empty;
+
+            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            httpWebRequest.Method = httpMethod.ToString();
+
+            if (!String.IsNullOrEmpty(_proxyName))
+            {
+                httpWebRequest.Proxy = new WebProxy(_proxyName, 80);
+                httpWebRequest.Proxy.Credentials = CredentialCache.DefaultCredentials;
+            }
+
+            if (data != null)
+            {
+                byte[] bytes = UTF8Encoding.UTF8.GetBytes(data.ToString());
+                httpWebRequest.ContentLength = bytes.Length;
+                Stream stream = httpWebRequest.GetRequestStream();
+                stream.Write(bytes, 0, bytes.Length);
+                stream.Dispose();
+            }
+
             try
             {
-                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-                httpWebRequest.Method = httpMethod.ToString();
-
-                if (!String.IsNullOrEmpty(_proxyName))
-                {
-                    httpWebRequest.Proxy = new WebProxy(_proxyName, 80);
-                    httpWebRequest.Proxy.Credentials = CredentialCache.DefaultCredentials;
-                }
-
-                if (data != null)
-                {
-                    byte[] bytes = UTF8Encoding.UTF8.GetBytes(data.ToString());
-                    httpWebRequest.ContentLength = bytes.Length;
-                    Stream stream = httpWebRequest.GetRequestStream();
-                    stream.Write(bytes, 0, bytes.Length);
-                    stream.Dispose();
-                }
-
-
-
                 HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+
                 StreamReader reader = new StreamReader(httpWebResponse.GetResponseStream());
                 result = reader.ReadToEnd();
                 reader.Dispose();
             }
-            catch (Exception)
+            catch (WebException ex)
             {
-
-                throw;
             }
+
             return result;
         }
+
 
         private string SerializeDictionary(Dictionary<string, string> dictionary)
         {
