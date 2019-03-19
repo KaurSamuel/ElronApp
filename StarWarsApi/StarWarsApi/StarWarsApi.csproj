@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="ApiSecvice.cs" />
     <Compile Include="CustomAdapter.cs" />
+    <Compile Include="DetailsAdapter.cs" />
     <Compile Include="ItemActivity.cs" />
     <Compile Include="OptionListActivity.cs" />
     <Compile Include="SplashActivity.cs" />
