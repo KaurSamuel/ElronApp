@@ -47,7 +47,7 @@ namespace StarWarsApi
                             //urlList.Add(item.url);
                         }
                     }
-
+                    #region Old Code
                     //nice code
                     //for (int i = 1; i < 7; i++)
                     //{
@@ -77,65 +77,57 @@ namespace StarWarsApi
                     //{
                     //    OptionList.Add(planet.name);
                     //};
+                    #endregion
+
                     break;
                 case ("People"):
-                    var count = core.GetAllPeople().count;
-                    for (int i = 2; i <= count; i++)
+                    for (int i = 1; i < 9; i++)
                     {
-                        _optionList.Add(core.GetPeople(i.ToString()));
-                    }
-                    foreach (People item in _optionList)
-                    {
-                        if (item != null)
-                            nameList.Add(item.name);
+                        var Data = core.GetAllPeople(i.ToString()).results;
+                        foreach (var item in Data)
+                        {
+                            valuePairs.Add(item.name, item.url);
+                        }
                     }
                     break;
                 case ("Films"):
-                    count = core.GetAllFilms().count;
-                    for (int i = 1; i <= count; i++)
+                    for (int i = 1; i < 1; i++)
                     {
-                        _optionList.Add(core.GetFilm(i.ToString()));
-                    }
-                    foreach (Film item in _optionList)
-                    {
-                        if (item != null)
-                            nameList.Add(item.title);
+                        var Data = core.GetAllFilms(i.ToString()).results;
+                        foreach (var item in Data)
+                        {
+                            valuePairs.Add(item.title, item.url);
+                        }
                     }
                     break;
                 case ("Species"):
-                    count = core.GetAllSpecies().count;
-                    for (int i = 1; i <= count; i++)
+                    for (int i = 1; i < 4; i++)
                     {
-                        _optionList.Add(core.GetSpecie(i.ToString()));
-                    }
-                    foreach (Specie item in _optionList)
-                    {
-                        if (item != null)
-                            nameList.Add(item.name);
+                        var Data = core.GetAllSpecies(i.ToString()).results;
+                        foreach (var item in Data)
+                        {
+                            valuePairs.Add(item.name, item.url);
+                        }
                     }
                     break;
                 case ("StarShips"):
-                    count = core.GetAllStarships().count;
-                    for (int i = 2; i <= count; i++)
+                    for (int i = 1; i < 4; i++)
                     {
-                        _optionList.Add(core.GetStarship(i.ToString()));
-                    }
-                    foreach (Starship item in _optionList)
-                    {
-                        if (item != null)
-                            nameList.Add(item.name);
+                        var Data = core.GetAllSpecies(i.ToString()).results;
+                        foreach (var item in Data)
+                        {
+                            valuePairs.Add(item.name, item.url);
+                        }
                     }
                     break;
                 case ("Vehicles"):
-                    count = core.GetAllVehicles().count;
-                    for (int i = 1; i <= count; i++)
+                    for (int i = 1; i < 4; i++)
                     {
-                        _optionList.Add(core.GetVehicle(i.ToString()));
-                    }
-                    foreach (Vehicle item in _optionList)
-                    {
-                        if (item != null)
-                            nameList.Add(item.name);
+                        var Data = core.GetAllVehicles(i.ToString()).results;
+                        foreach (var item in Data)
+                        {
+                            valuePairs.Add(item.name, item.url);
+                        }
                     }
                     break;
             };
