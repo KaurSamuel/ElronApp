@@ -27,14 +27,14 @@ namespace StarWarsApi
 
             List<string> nameList = new List<string>();
             List<SharpEntity> _optionList = new List<SharpEntity>();
+            Dictionary<string, string> valuePairs = new Dictionary<string, string>();
+            List<string> urlList = new List<string>();
             //List<string> nameList = new List<string>();
             List<string> list = new List<string>();
             string option = Intent.GetSerializableExtra("ButtonName").ToString();
 
             switch (option)
             {
-
-
                 case ("Planets"):
 
                     for (int i = 1; i < 7; i++)
@@ -42,9 +42,22 @@ namespace StarWarsApi
                         var planets = core.GetAllPlanets(i.ToString()).results;
                         foreach (var item in planets)
                         {
-                            nameList.Add(item.name);
+                            valuePairs.Add(item.name, item.url);
+                            //nameList.Add(item.name);
+                            //urlList.Add(item.url);
                         }
                     }
+
+                    //nice code
+                    //for (int i = 1; i < 7; i++)
+                    //{
+                    //    var planets = core.GetAllPlanets(i.ToString()).results;
+                    //    foreach (var item in planets)
+                    //    {
+                    //        nameList.Add(item.name);
+                    //        urlList.Add(item.url);
+                    //    }
+                    //}
 
 
                     //case ("Planets"):
@@ -126,9 +139,9 @@ namespace StarWarsApi
                     }
                     break;
             };
-            foreach (var item in list)
+            foreach (KeyValuePair<string, string> kvp in valuePairs)
             {
-                nameList.Add(item);
+                nameList.Add(kvp.Key);
             }
             
             ListView listview = FindViewById<ListView>(Resource.Id.listView_selectedOption);
@@ -137,11 +150,14 @@ namespace StarWarsApi
             listview.ItemClick += delegate (object sender, AdapterView.ItemClickEventArgs args)
               {
                   var item = listview.Adapter.GetItem(args.Position).ToString();
+                  var url = valuePairs[item];
+                  
                   int index = nameList.FindIndex(x => x == item);
                   var ItemActivity = new Intent(this, typeof(ItemActivity));
                   ItemActivity.PutExtra("OptionName", option);
                   ItemActivity.PutExtra("ItemName", item);
                   ItemActivity.PutExtra("ItemIndex", index);
+                  ItemActivity.PutExtra("ItemUrl", url);
                   //ItemActivity.PutExtra("ItemList", OptionList);
                   StartActivity(ItemActivity);
               };
