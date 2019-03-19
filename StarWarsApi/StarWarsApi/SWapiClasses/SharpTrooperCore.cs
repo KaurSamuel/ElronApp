@@ -83,8 +83,6 @@ namespace SharpTrooper.Core
             }
 
                 return parameters.Remove(parameters.Length - 1, 1).ToString();
-
-            
         }
 
         private T GetSingle<T>(string endpoint, Dictionary<string, string> parameters = null) where T : SharpEntity

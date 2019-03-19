@@ -61,6 +61,7 @@
     <Compile Include="DetailsAdapter.cs" />
     <Compile Include="ItemActivity.cs" />
     <Compile Include="OptionListActivity.cs" />
+    <Compile Include="ItemStrings.cs" />
     <Compile Include="SplashActivity.cs" />
     <Compile Include="SWapiClasses\Film.cs" />
     <Compile Include="MainActivity.cs" />

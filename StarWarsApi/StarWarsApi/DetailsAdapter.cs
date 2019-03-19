@@ -6,56 +6,62 @@ using Android.Widget;
 
 namespace StarWarsApi
 {
-    //class DetailsAdapter : BaseAdapter<Dictionary<string,object>>
-    //{
-    //    Dictionary<string, object> items;
-    //    Activity context;
+    class DetailsAdapter : BaseAdapter<string>
+    {
+        ItemStrings itemLists=new ItemStrings();
+        Activity context;
 
 
-    //    public DetailsAdapter(Activity context, Dictionary<string,object> items) : base()
-    //    {
-    //        this.context = context;
-    //        this.items = items;
-    //    }
+        public DetailsAdapter(Activity context, List<string> propertyNames, List<string> propertyValues) : base()
+        {
+            this.context = context;
+            itemLists.PropertyNames = propertyNames;
+            itemLists.PropertyValues = propertyValues;
+        }
 
-    //    public override Dictionary<string, object> this[string key]
-    //    {
-    //        get { return items[key]; }
-    //    }
+        //public override Dictionary<string, object> this[int position]
+        //{
+        //    get { return items.FirstOrDefault(x=>x.Key==position); }
+        //}
 
-    //    //public override string this[int position]
-    //    //{
-    //    //    get { return items[position]; }
-    //    //}// => throw new System.NotImplementedException();
+        public override string this[int position] 
+        {
+            get { return itemLists.PropertyNames[position]; }
+        }
 
-    //    //public override Dictionary<string, object> this[string key, object value]
-    //    //{
-    //    //    get { return items.ToDictionary(v => v, v => true)[key, value]; }
-    //    //}
+        //public override string this[int position]
+        //{
+        //    get { return items[position]; }
+        //}// => throw new System.NotImplementedException();
 
-    //    public override int Count
-    //    {
-    //        get
-    //        {
-    //            return items.Count;
-    //        }
-    //    }
+        //public override Dictionary<string, object> this[string key, object value]
+        //{
+        //    get { return items.ToDictionary(v => v, v => true)[key, value]; }
+        //}
 
-    //    public override long GetItemId(int position)
-    //    {
-    //        return position;
-    //    }
+        public override int Count
+        {
+            get
+            {
+                return itemLists.PropertyNames.Count;
+            }
+        }
 
-    //    public override View GetView(int position, View convertView, ViewGroup parent)
-    //    {
-    //        var view = convertView;
-    //        if (view == null)
-    //            view = context.LayoutInflater.Inflate(Resource.Layout.details_row, null);
+        public override long GetItemId(int position)
+        {
+            return position;
+        }
 
-    //        view.FindViewById<TextView>(Resource.Id.textView_Key).Text = items[position].key;
-    //        view.FindViewById<TextView>(Resource.Id.textView_Value).Text = items[position].WeatherDescription;
+        public override View GetView(int position, View convertView, ViewGroup parent)
+        {
+            var view = convertView;
+            if (view == null)
+                view = context.LayoutInflater.Inflate(Resource.Layout.details_row, null);
 
-    //        return view;
-    //    }
-    //}
+            view.FindViewById<TextView>(Resource.Id.textView_Key).Text = itemLists.PropertyNames[position];
+            view.FindViewById<TextView>(Resource.Id.textView_Value).Text = itemLists.PropertyValues[position];
+
+            return view;
+        }
+    }
 }
