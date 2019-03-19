@@ -23,18 +23,45 @@ namespace StarWarsApi
             SetContentView(Resource.Layout.DetailsLayout);
 
             string option = Intent.GetSerializableExtra("OptionName").ToString();
-            string item = Intent.GetSerializableExtra("ItemName").ToString();
+            string itemString = Intent.GetSerializableExtra("ItemName").ToString();
             int index = int.Parse(Intent.GetSerializableExtra("ItemIndex").ToString());
-            index++;
+            //index++;
 
             TextView nameBig = FindViewById<TextView>(Resource.Id.textView_nameBig);
-            nameBig.Text = item;
+            nameBig.Text = itemString;
 
             List<string> itemList = new List<string>();
             SharpTrooperCore core = new SharpTrooperCore();
-            var result=core.GetSingleByUrl<People>("https://swapi.co/api/"+option.ToLower()+"/"+index);
+            //var result=core.GetSingleByUrl<People>("https://swapi.co/api" + "/" +option.ToLower() + "/" + index);
+            SharpEntity item;
 
-            index = 0;
+            switch (option)
+            {
+                case ("Planets"):
+                    item = core.GetSingleByUrl<Planet>("https://swapi.co/api" + "/" + option.ToLower() + "/" + index);
+                    foreach (var  in collection)
+                    {
+
+                    }
+                    break;
+                case ("People"):
+                    item = core.GetSingleByUrl<People>("https://swapi.co/api" + "/" + option.ToLower() + "/" + index);
+                    break;
+                case ("Films"):
+                    item = core.GetSingleByUrl<Film>("https://swapi.co/api" + "/" + option.ToLower() + "/" + index);
+                    break;
+                case ("Species"):
+                    item = core.GetSingleByUrl<Specie>("https://swapi.co/api" + "/" + option.ToLower() + "/" + index);
+                    break;
+                case ("StarShips"):
+                    item = core.GetSingleByUrl<Starship>("https://swapi.co/api" + "/" + option.ToLower() + "/" + index);
+                    break;
+                case ("Vehicles"):
+                    item = core.GetSingleByUrl<Vehicle>("https://swapi.co/api" + "/" + option.ToLower() + "/" + index);
+                    break;
+            };
+
+            //index = 0;
         }
     }
 }
