@@ -20,6 +20,10 @@ namespace StarWarsApi
         Button buttonVehicles;
         ImageView imgplanets;
         ImageView imgpeople;
+        ImageView imgspecies;
+        ImageView imgstarships;
+        ImageView imgfilms;
+        ImageView imgvehicles;
         string buttonName;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -37,13 +41,17 @@ namespace StarWarsApi
             buttonVehicles = FindViewById<Button>(Resource.Id.Vehicles);
             imgplanets = FindViewById<ImageView>(Resource.Id.imageView_Planets);
             imgpeople = FindViewById<ImageView>(Resource.Id.imageView_People);
+            imgspecies = FindViewById<ImageView>(Resource.Id.imageView_Species);
+            imgstarships = FindViewById<ImageView>(Resource.Id.imageView_Starships);
+            imgfilms = FindViewById<ImageView>(Resource.Id.imageView_Films);
+            imgvehicles = FindViewById<ImageView>(Resource.Id.imageView_Vehicles);
 
-            buttonPlanets.Click += ButtonPlanets_Click;
-            buttonPeople.Click += ButtonPeople_Click;
-            buttonFilms.Click += ButtonFilms_Click;
-            buttonSpecies.Click += ButtonSpecies_Click;
-            buttonStarships.Click += ButtonStarships_Click;
-            buttonVehicles.Click += ButtonVehicles_Click;
+            imgplanets.Click += ButtonPlanets_Click;
+            imgpeople.Click += ButtonPeople_Click;
+            imgfilms.Click += ButtonFilms_Click;
+            imgspecies.Click += ButtonSpecies_Click;
+            imgstarships.Click += ButtonStarships_Click;
+            imgvehicles.Click += ButtonVehicles_Click;
             imgplanets.Click += ButtonPlanets_Click;
             imgpeople.Click += ButtonPeople_Click;
             UserDialogs.Init(this); 

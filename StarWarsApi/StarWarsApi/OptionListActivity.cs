@@ -28,21 +28,35 @@ namespace StarWarsApi
             List<string> nameList = new List<string>();
             List<SharpEntity> _optionList = new List<SharpEntity>();
             //List<string> nameList = new List<string>();
-
+            List<string> list = new List<string>();
             string option = Intent.GetSerializableExtra("ButtonName").ToString();
 
             switch (option)
             {
+
+
                 case ("Planets"):
-                    var count=core.GetAllPlanets().count;
-                    for (int i = 2; i <= count; i++)
+
+                    for (int i = 1; i < 7; i++)
                     {
-                        _optionList.Add(core.GetPlanet(i.ToString()));
+                        var planets = core.GetAllPlanets(i.ToString()).results;
+                        foreach (var item in planets)
+                        {
+                            nameList.Add(item.name);
+                        }
                     }
-                    foreach (Planet item in _optionList)
-                    {
-                        nameList.Add(item.name);
-                    }
+
+
+                    //case ("Planets"):
+                    //    var count=core.GetAllPlanets().count;
+                    //    for (int i = 2; i <= count; i++)
+                    //    {
+                    //        _optionList.Add(core.GetPlanet(i.ToString()));
+                    //    }
+                    //    foreach (Planet item in _optionList)
+                    //    {
+                    //        nameList.Add(item.name);
+                    //    }
 
                     //var planetList = core.GetAllPlanets().results;
 
@@ -52,7 +66,7 @@ namespace StarWarsApi
                     //};
                     break;
                 case ("People"):
-                    count = core.GetAllPeople().count;
+                    var count = core.GetAllPeople().count;
                     for (int i = 2; i <= count; i++)
                     {
                         _optionList.Add(core.GetPeople(i.ToString()));
@@ -112,6 +126,10 @@ namespace StarWarsApi
                     }
                     break;
             };
+            foreach (var item in list)
+            {
+                nameList.Add(item);
+            }
             
             ListView listview = FindViewById<ListView>(Resource.Id.listView_selectedOption);
             listview.Adapter = new CustomAdapter(this, nameList);

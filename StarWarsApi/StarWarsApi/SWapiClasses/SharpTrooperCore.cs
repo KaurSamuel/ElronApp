@@ -81,11 +81,11 @@ namespace SharpTrooper.Core
             {
                 parameters.Append(keyValuePair.Key + "=" + keyValuePair.Value + "&");
             }
-            return parameters.Remove(parameters.Length - 1, 1).ToString();
+
+                return parameters.Remove(parameters.Length - 1, 1).ToString();
+
+            
         }
-
-
-        
 
         private T GetSingle<T>(string endpoint, Dictionary<string, string> parameters = null) where T : SharpEntity
         {
@@ -223,7 +223,6 @@ namespace SharpTrooper.Core
         public SharpEntityResults<Planet> GetAllPlanets(string pageNumber = "1")
         {
             SharpEntityResults<Planet> result = GetAllPaginated<Planet>("/planets/", pageNumber);
-
             return result;
         }
 
