@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 using Android.App;
@@ -25,6 +26,7 @@ namespace StarWarsApi
             string option = Intent.GetSerializableExtra("OptionName").ToString();
             string itemString = Intent.GetSerializableExtra("ItemName").ToString();
             int index = int.Parse(Intent.GetSerializableExtra("ItemIndex").ToString());
+            string url=Intent.GetSerializableExtra("ItemUrl").ToString();
             //index++;
 
             TextView nameBig = FindViewById<TextView>(Resource.Id.textView_nameBig);
@@ -32,36 +34,52 @@ namespace StarWarsApi
 
             List<string> itemList = new List<string>();
             SharpTrooperCore core = new SharpTrooperCore();
-            //var result=core.GetSingleByUrl<People>("https://swapi.co/api" + "/" +option.ToLower() + "/" + index);
             SharpEntity item;
 
             switch (option)
             {
                 case ("Planets"):
-                    item = core.GetSingleByUrl<Planet>("https://swapi.co/api" + "/" + option.ToLower() + "/" + index);
-                    foreach (var  in collection)
-                    {
-
-                    }
+                    item = core.GetSingleByUrl<Planet>(url);
+                    
                     break;
                 case ("People"):
-                    item = core.GetSingleByUrl<People>("https://swapi.co/api" + "/" + option.ToLower() + "/" + index);
+                    item = core.GetSingleByUrl<People>(url);
                     break;
                 case ("Films"):
-                    item = core.GetSingleByUrl<Film>("https://swapi.co/api" + "/" + option.ToLower() + "/" + index);
+                    item = core.GetSingleByUrl<Film>(url);
                     break;
                 case ("Species"):
-                    item = core.GetSingleByUrl<Specie>("https://swapi.co/api" + "/" + option.ToLower() + "/" + index);
+                    item = core.GetSingleByUrl<Specie>(url);
                     break;
                 case ("StarShips"):
-                    item = core.GetSingleByUrl<Starship>("https://swapi.co/api" + "/" + option.ToLower() + "/" + index);
+                    item = core.GetSingleByUrl<Starship>(url);
                     break;
                 case ("Vehicles"):
-                    item = core.GetSingleByUrl<Vehicle>("https://swapi.co/api" + "/" + option.ToLower() + "/" + index);
+                    item = core.GetSingleByUrl<Vehicle>(url);
                     break;
             };
 
             //index = 0;
+
+
+        }
+
+        /// code from https://stackoverflow.com/a/737159
+        /// <summary>
+        /// creates a dictionary with an object's property name as a key and the respective property's value as a value  
+        /// </summary>
+        public static Dictionary<string, object> DictionaryFromType(object atype)
+        {
+            if (atype == null) return new Dictionary<string, object>();
+            Type t = atype.GetType();
+            PropertyInfo[] props = t.GetProperties();
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+            foreach (PropertyInfo prp in props)
+            {
+                object value = prp.GetValue(atype, new object[] { });
+                dict.Add(prp.Name, value);
+            }
+            return dict;
         }
     }
 }
