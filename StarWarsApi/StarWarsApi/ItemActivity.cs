@@ -40,7 +40,7 @@ namespace StarWarsApi
             {
                 case ("Planets"):
                     item = core.GetSingleByUrl<Planet>(url);
-                    
+                    var itemDic=DictionaryFromType(item);
                     break;
                 case ("People"):
                     item = core.GetSingleByUrl<People>(url);
