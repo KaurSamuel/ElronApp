@@ -29,10 +29,9 @@ namespace StarWarsApi
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-            //dynamic x = ApiSecvice.Get_Single("people/");
 
+            #region Button definitions
             buttonPlanets = FindViewById<Button>(Resource.Id.Planets);
             buttonPeople = FindViewById<Button>(Resource.Id.People);
             buttonFilms = FindViewById<Button>(Resource.Id.Films);
@@ -45,7 +44,9 @@ namespace StarWarsApi
             imgstarships = FindViewById<ImageView>(Resource.Id.imageView_Starships);
             imgfilms = FindViewById<ImageView>(Resource.Id.imageView_Films);
             imgvehicles = FindViewById<ImageView>(Resource.Id.imageView_Vehicles);
+            #endregion
 
+            #region Click events
             imgplanets.Click += ButtonPlanets_Click;
             imgpeople.Click += ButtonPeople_Click;
             imgfilms.Click += ButtonFilms_Click;
@@ -54,6 +55,8 @@ namespace StarWarsApi
             imgvehicles.Click += ButtonVehicles_Click;
             imgplanets.Click += ButtonPlanets_Click;
             imgpeople.Click += ButtonPeople_Click;
+            #endregion
+
             UserDialogs.Init(this); 
         }
 
@@ -67,9 +70,7 @@ namespace StarWarsApi
                 var ListActivity = new Intent(this, typeof(OptionListActivity));
                 ListActivity.PutExtra("ButtonName", buttonName);
                 StartActivity(ListActivity);
-                
             }
-            
         }
 
         public void ButtonPeople_Click(object sender, EventArgs e)

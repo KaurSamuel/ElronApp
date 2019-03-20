@@ -19,25 +19,10 @@ namespace StarWarsApi
             itemLists.PropertyValues = propertyValues;
         }
 
-        //public override Dictionary<string, object> this[int position]
-        //{
-        //    get { return items.FirstOrDefault(x=>x.Key==position); }
-        //}
-
         public override string this[int position] 
         {
             get { return itemLists.PropertyNames[position]; }
         }
-
-        //public override string this[int position]
-        //{
-        //    get { return items[position]; }
-        //}// => throw new System.NotImplementedException();
-
-        //public override Dictionary<string, object> this[string key, object value]
-        //{
-        //    get { return items.ToDictionary(v => v, v => true)[key, value]; }
-        //}
 
         public override int Count
         {
