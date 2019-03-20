@@ -12,12 +12,6 @@ namespace StarWarsApi
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme")]
     public class MainActivity : AppCompatActivity
     {
-        Button buttonPlanets;
-        Button buttonSpecies;
-        Button buttonPeople;
-        Button buttonStarships;
-        Button buttonFilms;
-        Button buttonVehicles;
         ImageView imgplanets;
         ImageView imgpeople;
         ImageView imgspecies;
@@ -32,12 +26,7 @@ namespace StarWarsApi
             SetContentView(Resource.Layout.activity_main);
 
             #region Button definitions
-            buttonPlanets = FindViewById<Button>(Resource.Id.Planets);
-            buttonPeople = FindViewById<Button>(Resource.Id.People);
-            buttonFilms = FindViewById<Button>(Resource.Id.Films);
-            buttonSpecies = FindViewById<Button>(Resource.Id.Species);
-            buttonStarships = FindViewById<Button>(Resource.Id.StarShips);
-            buttonVehicles = FindViewById<Button>(Resource.Id.Vehicles);
+
             imgplanets = FindViewById<ImageView>(Resource.Id.imageView_Planets);
             imgpeople = FindViewById<ImageView>(Resource.Id.imageView_People);
             imgspecies = FindViewById<ImageView>(Resource.Id.imageView_Species);
@@ -64,18 +53,18 @@ namespace StarWarsApi
 
         public void ButtonPlanets_Click(object sender, EventArgs e)
         {
-            using (UserDialogs.Instance.Loading("wait..."))
-            {
-                buttonName = buttonPlanets.Text;
+            //using (UserDialogs.Instance.Loading("wait..."))
+            //{
+                buttonName = "Planets";
                 var ListActivity = new Intent(this, typeof(OptionListActivity));
                 ListActivity.PutExtra("ButtonName", buttonName);
                 StartActivity(ListActivity);
-            }
+            //}
         }
 
         public void ButtonPeople_Click(object sender, EventArgs e)
         {
-            buttonName = buttonPeople.Text;
+            buttonName = "People";
             var ListActivity = new Intent(this, typeof(OptionListActivity));
             ListActivity.PutExtra("ButtonName", buttonName);
             StartActivity(ListActivity);
@@ -83,7 +72,7 @@ namespace StarWarsApi
 
         public void ButtonFilms_Click(object sender, EventArgs e)
         {
-            buttonName = buttonFilms.Text;
+            buttonName = "Films";
             var ListActivity = new Intent(this, typeof(OptionListActivity));
             ListActivity.PutExtra("ButtonName", buttonName);
             StartActivity(ListActivity);
@@ -91,7 +80,7 @@ namespace StarWarsApi
 
         public void ButtonSpecies_Click(object sender, EventArgs e)
         {
-            buttonName = buttonSpecies.Text;
+            buttonName = "Species";
             var ListActivity = new Intent(this, typeof(OptionListActivity));
             ListActivity.PutExtra("ButtonName", buttonName);
             StartActivity(ListActivity);
@@ -99,7 +88,7 @@ namespace StarWarsApi
 
         public void ButtonStarships_Click(object sender, EventArgs e)
         {
-            buttonName = buttonStarships.Text;
+            buttonName = "StarShips";
             var ListActivity = new Intent(this, typeof(OptionListActivity));
             ListActivity.PutExtra("ButtonName", buttonName);
             StartActivity(ListActivity);
@@ -107,7 +96,7 @@ namespace StarWarsApi
 
         public void ButtonVehicles_Click(object sender, EventArgs e)
         {
-            buttonName = buttonVehicles.Text;
+            buttonName = "Vehicles";
             var ListActivity = new Intent(this, typeof(OptionListActivity));
             ListActivity.PutExtra("ButtonName", buttonName);
             StartActivity(ListActivity);
