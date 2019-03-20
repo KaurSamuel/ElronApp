@@ -10,6 +10,21 @@ namespace SharpTrooper.Entities
     /// </summary>
     public class Starship : Vehicle
     {
+        public string hyperdrive_rating
+        {
+            get;
+            set;
+        }
+        public string MGLT
+        {
+            get;
+            set;
+        }
+        public string starship_class
+        {
+            get;
+            set;
+        }
     }
 }
 

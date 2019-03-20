@@ -47,8 +47,12 @@ namespace StarWarsApi
                             continue;
                         itemKey = char.ToUpper(itemKey[0]) + itemKey.Substring(1).Replace("_", " ");
                         itemStrings.PropertyNames.Add(itemKey);
-                        
-                        if(item.Value.GetType()==typeof(List<string>))
+
+                        if (item.Value == null)
+                        {
+                            itemStrings.PropertyValues.Add("unknown");
+                        }
+                        else if (item.Value.GetType()==typeof(List<string>))
                         {
                             List<string> stringList = new List<string>();
 
@@ -86,6 +90,38 @@ namespace StarWarsApi
                             }
                             string listToString = string.Join(", ", stringList);
                             itemStrings.PropertyValues.Add(listToString);
+                        }
+                        else if (item.Value.ToString().StartsWith("https://swapi.co/api/"))
+                        {
+                            string category = item.Value.ToString().Substring(21).TrimEnd('/', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+                            category = char.ToUpper(category[0]) + category.Substring(1);
+                            switch (category)
+                            {
+                                case ("Planets"):
+                                    Planet planetResult = core.GetSingleByUrl<Planet>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(planetResult.name);
+                                    break;
+                                case ("People"):
+                                    People peopleResult = core.GetSingleByUrl<People>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(peopleResult.name);
+                                    break;
+                                case ("Films"):
+                                    Film filmResult = core.GetSingleByUrl<Film>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(filmResult.title);
+                                    break;
+                                case ("Species"):
+                                    Specie speciesResult = core.GetSingleByUrl<Specie>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(speciesResult.name);
+                                    break;
+                                case ("Starships"):
+                                    Starship starshipResult = core.GetSingleByUrl<Starship>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(starshipResult.name);
+                                    break;
+                                case ("Vehicles"):
+                                    Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(vehicleResult.name);
+                                    break;
+                            }
                         }
                         else
                         {
@@ -106,7 +142,11 @@ namespace StarWarsApi
                         itemKey = char.ToUpper(itemKey[0]) + itemKey.Substring(1).Replace("_", " ");
                         itemStrings.PropertyNames.Add(itemKey);
 
-                        if (item.Value.GetType() == typeof(List<string>))
+                        if (item.Value == null)
+                        {
+                            itemStrings.PropertyValues.Add("unknown");
+                        }
+                        else if (item.Value.GetType() == typeof(List<string>))
                         {
                             List<string> stringList = new List<string>();
 
@@ -144,6 +184,38 @@ namespace StarWarsApi
                             }
                             string listToString = string.Join(", ", stringList);
                             itemStrings.PropertyValues.Add(listToString);
+                        }
+                        else if (item.Value.ToString().StartsWith("https://swapi.co/api/"))
+                        {
+                            string category = item.Value.ToString().Substring(21).TrimEnd('/', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+                            category = char.ToUpper(category[0]) + category.Substring(1);
+                            switch (category)
+                            {
+                                case ("Planets"):
+                                    Planet planetResult = core.GetSingleByUrl<Planet>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(planetResult.name);
+                                    break;
+                                case ("People"):
+                                    People peopleResult = core.GetSingleByUrl<People>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(peopleResult.name);
+                                    break;
+                                case ("Films"):
+                                    Film filmResult = core.GetSingleByUrl<Film>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(filmResult.title);
+                                    break;
+                                case ("Species"):
+                                    Specie speciesResult = core.GetSingleByUrl<Specie>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(speciesResult.name);
+                                    break;
+                                case ("Starships"):
+                                    Starship starshipResult = core.GetSingleByUrl<Starship>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(starshipResult.name);
+                                    break;
+                                case ("Vehicles"):
+                                    Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(vehicleResult.name);
+                                    break;
+                            }
                         }
                         else
                         {
@@ -159,12 +231,24 @@ namespace StarWarsApi
                     foreach (var item in itemDic)
                     {
                         string itemKey = item.Key;
-                        if (itemKey == "name" || itemKey == "created" || itemKey == "edited" || itemKey == "url")
+                        if (itemKey == "name" || itemKey == "created" || itemKey == "edited" || itemKey == "url" || itemKey == "title")
                             continue;
                         itemKey = char.ToUpper(itemKey[0]) + itemKey.Substring(1).Replace("_", " ");
-                        itemStrings.PropertyNames.Add(itemKey);
+                        if(itemKey=="Episode id")
+                        {
+                            itemKey = "Episode";
+                            itemStrings.PropertyNames.Add(itemKey);
+                        }
+                        else
+                        {
+                            itemStrings.PropertyNames.Add(itemKey);
+                        }
 
-                        if (item.Value.GetType() == typeof(List<string>))
+                        if (item.Value == null)
+                        {
+                            itemStrings.PropertyValues.Add("unknown");
+                        }
+                        else if (item.Value.GetType() == typeof(List<string>))
                         {
                             List<string> stringList = new List<string>();
 
@@ -202,6 +286,38 @@ namespace StarWarsApi
                             }
                             string listToString = string.Join(", ", stringList);
                             itemStrings.PropertyValues.Add(listToString);
+                        }
+                        else if (item.Value.ToString().StartsWith("https://swapi.co/api/"))
+                        {
+                            string category = item.Value.ToString().Substring(21).TrimEnd('/', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+                            category = char.ToUpper(category[0]) + category.Substring(1);
+                            switch (category)
+                            {
+                                case ("Planets"):
+                                    Planet planetResult = core.GetSingleByUrl<Planet>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(planetResult.name);
+                                    break;
+                                case ("People"):
+                                    People peopleResult = core.GetSingleByUrl<People>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(peopleResult.name);
+                                    break;
+                                case ("Films"):
+                                    Film filmResult = core.GetSingleByUrl<Film>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(filmResult.title);
+                                    break;
+                                case ("Species"):
+                                    Specie speciesResult = core.GetSingleByUrl<Specie>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(speciesResult.name);
+                                    break;
+                                case ("Starships"):
+                                    Starship starshipResult = core.GetSingleByUrl<Starship>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(starshipResult.name);
+                                    break;
+                                case ("Vehicles"):
+                                    Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(vehicleResult.name);
+                                    break;
+                            }
                         }
                         else
                         {
@@ -222,7 +338,12 @@ namespace StarWarsApi
                         itemKey = char.ToUpper(itemKey[0]) + itemKey.Substring(1).Replace("_", " ");
                         itemStrings.PropertyNames.Add(itemKey);
 
-                        if (item.Value.GetType() == typeof(List<string>))
+                        if(item.Value==null)
+                        {
+                            itemStrings.PropertyValues.Add("unknown");
+                        }
+
+                        else if (item.Value.GetType() == typeof(List<string>))
                         {
                             List<string> stringList = new List<string>();
 
@@ -260,6 +381,38 @@ namespace StarWarsApi
                             }
                             string listToString = string.Join(", ", stringList);
                             itemStrings.PropertyValues.Add(listToString);
+                        }
+                        else if (item.Value.ToString().StartsWith("https://swapi.co/api/"))
+                        {
+                            string category = item.Value.ToString().Substring(21).TrimEnd('/', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+                            category = char.ToUpper(category[0]) + category.Substring(1);
+                            switch (category)
+                            {
+                                case ("Planets"):
+                                    Planet planetResult = core.GetSingleByUrl<Planet>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(planetResult.name);
+                                    break;
+                                case ("People"):
+                                    People peopleResult = core.GetSingleByUrl<People>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(peopleResult.name);
+                                    break;
+                                case ("Films"):
+                                    Film filmResult = core.GetSingleByUrl<Film>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(filmResult.title);
+                                    break;
+                                case ("Species"):
+                                    Specie speciesResult = core.GetSingleByUrl<Specie>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(speciesResult.name);
+                                    break;
+                                case ("Starships"):
+                                    Starship starshipResult = core.GetSingleByUrl<Starship>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(starshipResult.name);
+                                    break;
+                                case ("Vehicles"):
+                                    Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(vehicleResult.name);
+                                    break;
+                            }
                         }
                         else
                         {
@@ -275,12 +428,16 @@ namespace StarWarsApi
                     foreach (var item in itemDic)
                     {
                         string itemKey = item.Key;
-                        if (itemKey == "name" || itemKey == "created" || itemKey == "edited" || itemKey == "url")
+                        if (itemKey == "name" || itemKey == "created" || itemKey == "edited" || itemKey == "url" || itemKey == "vehicle_class")
                             continue;
                         itemKey = char.ToUpper(itemKey[0]) + itemKey.Substring(1).Replace("_", " ");
                         itemStrings.PropertyNames.Add(itemKey);
+                        if (item.Value == null)
+                        {
+                            itemStrings.PropertyValues.Add("unknown");
+                        }
 
-                        if (item.Value.GetType() == typeof(List<string>))
+                        else if (item.Value.GetType() == typeof(List<string>))
                         {
                             List<string> stringList = new List<string>();
 
@@ -318,6 +475,38 @@ namespace StarWarsApi
                             }
                             string listToString = string.Join(", ", stringList);
                             itemStrings.PropertyValues.Add(listToString);
+                        }
+                        else if (item.Value.ToString().StartsWith("https://swapi.co/api/"))
+                        {
+                            string category = item.Value.ToString().Substring(21).TrimEnd('/', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+                            category = char.ToUpper(category[0]) + category.Substring(1);
+                            switch (category)
+                            {
+                                case ("Planets"):
+                                    Planet planetResult = core.GetSingleByUrl<Planet>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(planetResult.name);
+                                    break;
+                                case ("People"):
+                                    People peopleResult = core.GetSingleByUrl<People>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(peopleResult.name);
+                                    break;
+                                case ("Films"):
+                                    Film filmResult = core.GetSingleByUrl<Film>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(filmResult.title);
+                                    break;
+                                case ("Species"):
+                                    Specie speciesResult = core.GetSingleByUrl<Specie>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(speciesResult.name);
+                                    break;
+                                case ("Starships"):
+                                    Starship starshipResult = core.GetSingleByUrl<Starship>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(starshipResult.name);
+                                    break;
+                                case ("Vehicles"):
+                                    Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(vehicleResult.name);
+                                    break;
+                            }
                         }
                         else
                         {
@@ -338,7 +527,11 @@ namespace StarWarsApi
                         itemKey = char.ToUpper(itemKey[0]) + itemKey.Substring(1).Replace("_", " ");
                         itemStrings.PropertyNames.Add(itemKey);
 
-                        if (item.Value.GetType() == typeof(List<string>))
+                        if (item.Value == null)
+                        {
+                            itemStrings.PropertyValues.Add("unknown");
+                        }
+                        else if (item.Value.GetType() == typeof(List<string>))
                         {
                             List<string> stringList = new List<string>();
 
@@ -376,6 +569,38 @@ namespace StarWarsApi
                             }
                             string listToString = string.Join(", ", stringList);
                             itemStrings.PropertyValues.Add(listToString);
+                        }
+                        else if (item.Value.ToString().StartsWith("https://swapi.co/api/"))
+                        {
+                            string category = item.Value.ToString().Substring(21).TrimEnd('/', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+                            category = char.ToUpper(category[0]) + category.Substring(1);
+                            switch (category)
+                            {
+                                case ("Planets"):
+                                    Planet planetResult = core.GetSingleByUrl<Planet>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(planetResult.name);
+                                    break;
+                                case ("People"):
+                                    People peopleResult = core.GetSingleByUrl<People>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(peopleResult.name);
+                                    break;
+                                case ("Films"):
+                                    Film filmResult = core.GetSingleByUrl<Film>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(filmResult.title);
+                                    break;
+                                case ("Species"):
+                                    Specie speciesResult = core.GetSingleByUrl<Specie>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(speciesResult.name);
+                                    break;
+                                case ("Starships"):
+                                    Starship starshipResult = core.GetSingleByUrl<Starship>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(starshipResult.name);
+                                    break;
+                                case ("Vehicles"):
+                                    Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(item.Value.ToString());
+                                    itemStrings.PropertyValues.Add(vehicleResult.name);
+                                    break;
+                            }
                         }
                         else
                         {

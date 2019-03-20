@@ -74,7 +74,7 @@ namespace StarWarsApi
                 case ("StarShips"):
                     for (int i = 1; i < 4; i++)
                     {
-                        var Data = core.GetAllSpecies(i.ToString()).results;
+                        var Data = core.GetAllStarships(i.ToString()).results;
                         foreach (var item in Data)
                         {
                             valuePairs.Add(item.name, item.url);
