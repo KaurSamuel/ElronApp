@@ -30,7 +30,6 @@ namespace StarWarsApi
             TextView nameBig = FindViewById<TextView>(Resource.Id.textView_nameBig);
             nameBig.Text = itemName;
 
-            List<string> itemList = new List<string>();
             SharpTrooperCore core = new SharpTrooperCore();
             SharpEntity itemInfo;
             ItemStrings itemStrings = new ItemStrings();
@@ -49,26 +48,41 @@ namespace StarWarsApi
                         itemKey = char.ToUpper(itemKey[0]) + itemKey.Substring(1).Replace("_", " ");
                         itemStrings.PropertyNames.Add(itemKey);
                         
-                        //if ((List<string>)item.ValStartsWith("https://swapi.co/api/"))
-                        //{
-                        //    string category = item.Value.ToString().Substring(22).TrimEnd('/','1', '2', '3', '4', '5', '6', '7', '8', '9');
-                        //    Type tinghy=Type.GetType(category);
-                        //    SharpEntity result = core.GetSingleByUrl<SharpEntity>(item.Value.ToString());
-
-                        //    itemStrings.PropertyValues.Add(result.ToString());
-                        //}
                         if(item.Value.GetType()==typeof(List<string>))
                         {
                             List<string> stringList = new List<string>();
 
                             foreach (var listItem in (List<string>)item.Value)
                             {
-                                SharpTrooper.Entities.
                                 string category = listItem.Substring(21).TrimEnd('/', '1', '2', '3', '4', '5', '6', '7', '8', '9');
-                                Type tinghy = Type.GetType("SharpTrooper.Entities" + category);
-                                (Type.GetType("SharpTrooper.Entities"+category))result = core.GetSingleByUrl<Film>(listItem);
-
-                                stringList.Add(result.title);
+                                category = char.ToUpper(category[0]) + category.Substring(1);
+                                switch (category)
+                                {
+                                    case ("Planets"):
+                                        Planet planetResult = core.GetSingleByUrl<Planet>(listItem);
+                                        stringList.Add(planetResult.name);
+                                        break;
+                                    case ("People"):
+                                        People peopleResult = core.GetSingleByUrl<People>(listItem);
+                                        stringList.Add(peopleResult.name);
+                                        break;
+                                    case ("Films"):
+                                        Film filmResult = core.GetSingleByUrl<Film>(listItem);
+                                        stringList.Add(filmResult.title);
+                                        break;
+                                    case ("Species"):
+                                        Specie speciesResult = core.GetSingleByUrl<Specie>(listItem);
+                                        stringList.Add(speciesResult.name);
+                                        break;
+                                    case ("Starships"):
+                                        Starship starshipResult = core.GetSingleByUrl<Starship>(listItem);
+                                        stringList.Add(starshipResult.name);
+                                        break;
+                                    case ("Vehicles"):
+                                        Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(listItem);
+                                        stringList.Add(vehicleResult.name);
+                                        break;
+                                }
                             }
                             string listToString = string.Join(", ", stringList);
                             itemStrings.PropertyValues.Add(listToString);
@@ -82,18 +96,292 @@ namespace StarWarsApi
                 case ("People"):
                     itemInfo = core.GetSingleByUrl<People>(url);
 
+                    itemDic = DictionaryFromType(itemInfo);
+
+                    foreach (var item in itemDic)
+                    {
+                        string itemKey = item.Key;
+                        if (itemKey == "name" || itemKey == "created" || itemKey == "edited" || itemKey == "url")
+                            continue;
+                        itemKey = char.ToUpper(itemKey[0]) + itemKey.Substring(1).Replace("_", " ");
+                        itemStrings.PropertyNames.Add(itemKey);
+
+                        if (item.Value.GetType() == typeof(List<string>))
+                        {
+                            List<string> stringList = new List<string>();
+
+                            foreach (var listItem in (List<string>)item.Value)
+                            {
+                                string category = listItem.Substring(21).TrimEnd('/', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+                                category = char.ToUpper(category[0]) + category.Substring(1);
+                                switch (category)
+                                {
+                                    case ("Planets"):
+                                        Planet planetResult = core.GetSingleByUrl<Planet>(listItem);
+                                        stringList.Add(planetResult.name);
+                                        break;
+                                    case ("People"):
+                                        People peopleResult = core.GetSingleByUrl<People>(listItem);
+                                        stringList.Add(peopleResult.name);
+                                        break;
+                                    case ("Films"):
+                                        Film filmResult = core.GetSingleByUrl<Film>(listItem);
+                                        stringList.Add(filmResult.title);
+                                        break;
+                                    case ("Species"):
+                                        Specie speciesResult = core.GetSingleByUrl<Specie>(listItem);
+                                        stringList.Add(speciesResult.name);
+                                        break;
+                                    case ("Starships"):
+                                        Starship starshipResult = core.GetSingleByUrl<Starship>(listItem);
+                                        stringList.Add(starshipResult.name);
+                                        break;
+                                    case ("Vehicles"):
+                                        Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(listItem);
+                                        stringList.Add(vehicleResult.name);
+                                        break;
+                                }
+                            }
+                            string listToString = string.Join(", ", stringList);
+                            itemStrings.PropertyValues.Add(listToString);
+                        }
+                        else
+                        {
+                            itemStrings.PropertyValues.Add(item.Value.ToString());
+                        }
+                    }
                     break;
                 case ("Films"):
                     itemInfo = core.GetSingleByUrl<Film>(url);
+
+                    itemDic = DictionaryFromType(itemInfo);
+
+                    foreach (var item in itemDic)
+                    {
+                        string itemKey = item.Key;
+                        if (itemKey == "name" || itemKey == "created" || itemKey == "edited" || itemKey == "url")
+                            continue;
+                        itemKey = char.ToUpper(itemKey[0]) + itemKey.Substring(1).Replace("_", " ");
+                        itemStrings.PropertyNames.Add(itemKey);
+
+                        if (item.Value.GetType() == typeof(List<string>))
+                        {
+                            List<string> stringList = new List<string>();
+
+                            foreach (var listItem in (List<string>)item.Value)
+                            {
+                                string category = listItem.Substring(21).TrimEnd('/', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+                                category = char.ToUpper(category[0]) + category.Substring(1);
+                                switch (category)
+                                {
+                                    case ("Planets"):
+                                        Planet planetResult = core.GetSingleByUrl<Planet>(listItem);
+                                        stringList.Add(planetResult.name);
+                                        break;
+                                    case ("People"):
+                                        People peopleResult = core.GetSingleByUrl<People>(listItem);
+                                        stringList.Add(peopleResult.name);
+                                        break;
+                                    case ("Films"):
+                                        Film filmResult = core.GetSingleByUrl<Film>(listItem);
+                                        stringList.Add(filmResult.title);
+                                        break;
+                                    case ("Species"):
+                                        Specie speciesResult = core.GetSingleByUrl<Specie>(listItem);
+                                        stringList.Add(speciesResult.name);
+                                        break;
+                                    case ("Starships"):
+                                        Starship starshipResult = core.GetSingleByUrl<Starship>(listItem);
+                                        stringList.Add(starshipResult.name);
+                                        break;
+                                    case ("Vehicles"):
+                                        Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(listItem);
+                                        stringList.Add(vehicleResult.name);
+                                        break;
+                                }
+                            }
+                            string listToString = string.Join(", ", stringList);
+                            itemStrings.PropertyValues.Add(listToString);
+                        }
+                        else
+                        {
+                            itemStrings.PropertyValues.Add(item.Value.ToString());
+                        }
+                    }
                     break;
                 case ("Species"):
                     itemInfo = core.GetSingleByUrl<Specie>(url);
+
+                    itemDic = DictionaryFromType(itemInfo);
+
+                    foreach (var item in itemDic)
+                    {
+                        string itemKey = item.Key;
+                        if (itemKey == "name" || itemKey == "created" || itemKey == "edited" || itemKey == "url")
+                            continue;
+                        itemKey = char.ToUpper(itemKey[0]) + itemKey.Substring(1).Replace("_", " ");
+                        itemStrings.PropertyNames.Add(itemKey);
+
+                        if (item.Value.GetType() == typeof(List<string>))
+                        {
+                            List<string> stringList = new List<string>();
+
+                            foreach (var listItem in (List<string>)item.Value)
+                            {
+                                string category = listItem.Substring(21).TrimEnd('/', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+                                category = char.ToUpper(category[0]) + category.Substring(1);
+                                switch (category)
+                                {
+                                    case ("Planets"):
+                                        Planet planetResult = core.GetSingleByUrl<Planet>(listItem);
+                                        stringList.Add(planetResult.name);
+                                        break;
+                                    case ("People"):
+                                        People peopleResult = core.GetSingleByUrl<People>(listItem);
+                                        stringList.Add(peopleResult.name);
+                                        break;
+                                    case ("Films"):
+                                        Film filmResult = core.GetSingleByUrl<Film>(listItem);
+                                        stringList.Add(filmResult.title);
+                                        break;
+                                    case ("Species"):
+                                        Specie speciesResult = core.GetSingleByUrl<Specie>(listItem);
+                                        stringList.Add(speciesResult.name);
+                                        break;
+                                    case ("Starships"):
+                                        Starship starshipResult = core.GetSingleByUrl<Starship>(listItem);
+                                        stringList.Add(starshipResult.name);
+                                        break;
+                                    case ("Vehicles"):
+                                        Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(listItem);
+                                        stringList.Add(vehicleResult.name);
+                                        break;
+                                }
+                            }
+                            string listToString = string.Join(", ", stringList);
+                            itemStrings.PropertyValues.Add(listToString);
+                        }
+                        else
+                        {
+                            itemStrings.PropertyValues.Add(item.Value.ToString());
+                        }
+                    }
                     break;
                 case ("StarShips"):
                     itemInfo = core.GetSingleByUrl<Starship>(url);
+
+                    itemDic = DictionaryFromType(itemInfo);
+
+                    foreach (var item in itemDic)
+                    {
+                        string itemKey = item.Key;
+                        if (itemKey == "name" || itemKey == "created" || itemKey == "edited" || itemKey == "url")
+                            continue;
+                        itemKey = char.ToUpper(itemKey[0]) + itemKey.Substring(1).Replace("_", " ");
+                        itemStrings.PropertyNames.Add(itemKey);
+
+                        if (item.Value.GetType() == typeof(List<string>))
+                        {
+                            List<string> stringList = new List<string>();
+
+                            foreach (var listItem in (List<string>)item.Value)
+                            {
+                                string category = listItem.Substring(21).TrimEnd('/', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+                                category = char.ToUpper(category[0]) + category.Substring(1);
+                                switch (category)
+                                {
+                                    case ("Planets"):
+                                        Planet planetResult = core.GetSingleByUrl<Planet>(listItem);
+                                        stringList.Add(planetResult.name);
+                                        break;
+                                    case ("People"):
+                                        People peopleResult = core.GetSingleByUrl<People>(listItem);
+                                        stringList.Add(peopleResult.name);
+                                        break;
+                                    case ("Films"):
+                                        Film filmResult = core.GetSingleByUrl<Film>(listItem);
+                                        stringList.Add(filmResult.title);
+                                        break;
+                                    case ("Species"):
+                                        Specie speciesResult = core.GetSingleByUrl<Specie>(listItem);
+                                        stringList.Add(speciesResult.name);
+                                        break;
+                                    case ("Starships"):
+                                        Starship starshipResult = core.GetSingleByUrl<Starship>(listItem);
+                                        stringList.Add(starshipResult.name);
+                                        break;
+                                    case ("Vehicles"):
+                                        Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(listItem);
+                                        stringList.Add(vehicleResult.name);
+                                        break;
+                                }
+                            }
+                            string listToString = string.Join(", ", stringList);
+                            itemStrings.PropertyValues.Add(listToString);
+                        }
+                        else
+                        {
+                            itemStrings.PropertyValues.Add(item.Value.ToString());
+                        }
+                    }
                     break;
                 case ("Vehicles"):
                     itemInfo = core.GetSingleByUrl<Vehicle>(url);
+
+                    itemDic = DictionaryFromType(itemInfo);
+
+                    foreach (var item in itemDic)
+                    {
+                        string itemKey = item.Key;
+                        if (itemKey == "name" || itemKey == "created" || itemKey == "edited" || itemKey == "url")
+                            continue;
+                        itemKey = char.ToUpper(itemKey[0]) + itemKey.Substring(1).Replace("_", " ");
+                        itemStrings.PropertyNames.Add(itemKey);
+
+                        if (item.Value.GetType() == typeof(List<string>))
+                        {
+                            List<string> stringList = new List<string>();
+
+                            foreach (var listItem in (List<string>)item.Value)
+                            {
+                                string category = listItem.Substring(21).TrimEnd('/', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+                                category = char.ToUpper(category[0]) + category.Substring(1);
+                                switch (category)
+                                {
+                                    case ("Planets"):
+                                        Planet planetResult = core.GetSingleByUrl<Planet>(listItem);
+                                        stringList.Add(planetResult.name);
+                                        break;
+                                    case ("People"):
+                                        People peopleResult = core.GetSingleByUrl<People>(listItem);
+                                        stringList.Add(peopleResult.name);
+                                        break;
+                                    case ("Films"):
+                                        Film filmResult = core.GetSingleByUrl<Film>(listItem);
+                                        stringList.Add(filmResult.title);
+                                        break;
+                                    case ("Species"):
+                                        Specie speciesResult = core.GetSingleByUrl<Specie>(listItem);
+                                        stringList.Add(speciesResult.name);
+                                        break;
+                                    case ("Starships"):
+                                        Starship starshipResult = core.GetSingleByUrl<Starship>(listItem);
+                                        stringList.Add(starshipResult.name);
+                                        break;
+                                    case ("Vehicles"):
+                                        Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(listItem);
+                                        stringList.Add(vehicleResult.name);
+                                        break;
+                                }
+                            }
+                            string listToString = string.Join(", ", stringList);
+                            itemStrings.PropertyValues.Add(listToString);
+                        }
+                        else
+                        {
+                            itemStrings.PropertyValues.Add(item.Value.ToString());
+                        }
+                    }
                     break;
             };
 
