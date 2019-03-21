@@ -6,6 +6,10 @@ using Android.Widget;
 using System;
 using Android.Content;
 using Acr.UserDialogs;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Distribute;
 
 namespace StarWarsApi
 {
@@ -24,6 +28,9 @@ namespace StarWarsApi
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
+
+            AppCenter.Start("013a6849-359c-489a-88db-974cce2c1722",
+                   typeof(Analytics), typeof(Crashes),typeof(Distribute));
 
             #region Button definitions
 
