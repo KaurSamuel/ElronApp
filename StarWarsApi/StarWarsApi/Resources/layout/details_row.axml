@@ -9,6 +9,7 @@
 		android:minHeight="25px"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:weightSum="10"
 		android:id="@+id/linearLayout1" >
 		<TextView
 			android:text="Property"
@@ -16,15 +17,18 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:id="@+id/textView_Key"
-			android:layout_marginLeft="10.0dp"
-			android:layout_marginRight="100.0dp" />
+			android:layout_marginLeft="2.0dp"
+		    android:layout_weight="0.1"/>
 		<TextView
 			android:text="Content"
 			android:textAppearance="?android:attr/textAppearanceMedium"
-			android:layout_width="match_parent"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:id="@+id/textView_Value"
-			android:layout_marginLeft="0.0dp" />
+			android:gravity="center_vertical|right"
+			android:layout_weight="9.9"
+			android:layout_marginRight="2.0dp" />
+			
 	</LinearLayout>
 
 </LinearLayout>
