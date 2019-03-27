@@ -136,11 +136,6 @@
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\ListOfSelectedThingAttributes_activity.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\StarWarsPeople.jpeg" />
   </ItemGroup>
   <ItemGroup>

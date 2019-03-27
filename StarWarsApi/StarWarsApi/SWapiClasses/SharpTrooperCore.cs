@@ -6,6 +6,7 @@ using System.IO;
 using SharpTrooper.Entities;
 using Newtonsoft.Json;
 using System.Collections.Specialized;
+using System.Threading.Tasks;
 
 namespace SharpTrooper.Core
 {
@@ -180,7 +181,7 @@ namespace SharpTrooper.Core
         /// <summary>
         /// get all the people resources
         /// </summary>
-        public SharpEntityResults<People> GetAllPeople(string pageNumber = "1")
+        public async Task <SharpEntityResults<People>> GetAllPeople(string pageNumber = "1")
         {
             SharpEntityResults<People> result = GetAllPaginated<People>("/people/", pageNumber);
 

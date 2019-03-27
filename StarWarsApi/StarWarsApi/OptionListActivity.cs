@@ -17,10 +17,14 @@ namespace StarWarsApi
     [Activity(Label = "OptionListActivity")]
     public class OptionListActivity : Activity
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.list_layout);
+
+            ProgressBar prBar = FindViewById<ProgressBar>(Resource.Id.progressBar1);
+            prBar.Indeterminate = true;
+            prBar.Visibility = ViewStates.Visible;
 
             SharpTrooperCore core = new SharpTrooperCore();
 
@@ -37,15 +41,14 @@ namespace StarWarsApi
                         foreach (var item in Data)
                         {
                             valuePairs.Add(item.name, item.url);
-                            
                         }
                     }
                     break;
                 case ("People"):
                     for (int i = 1; i < 9; i++)
                     {
-                        var Data = core.GetAllPeople(i.ToString()).results;
-                        foreach (var item in Data)
+                        var Data = await core.GetAllPeople(i.ToString());
+                        foreach (var item in Data.results)
                         {
                             valuePairs.Add(item.name, item.url);
                         }
@@ -99,6 +102,7 @@ namespace StarWarsApi
             
             ListView listview = FindViewById<ListView>(Resource.Id.listView_selectedOption);
             listview.Adapter = new CustomAdapter(this, nameList);
+            //prBar.Visibility = ViewStates.Gone;
 
             listview.ItemClick += delegate (object sender, AdapterView.ItemClickEventArgs args)
               {
