@@ -37,8 +37,8 @@ namespace StarWarsApi
                 case ("Planets"):
                     for (int i = 1; i < 7; i++)
                     {
-                        var Data = core.GetAllPlanets(i.ToString()).results;
-                        foreach (var item in Data)
+                        var Data = await core.GetAllPlanets(i.ToString());
+                        foreach (var item in Data.results)
                         {
                             valuePairs.Add(item.name, item.url);
                         }
@@ -57,8 +57,8 @@ namespace StarWarsApi
                 case ("Films"):
                     for (int i = 1; i < 2; i++)
                     {
-                        var Data = core.GetAllFilms(i.ToString()).results;
-                        foreach (var item in Data)
+                        var Data = await core.GetAllFilms(i.ToString());
+                        foreach (var item in Data.results)
                         {
                             valuePairs.Add(item.title, item.url);
                         }
@@ -67,8 +67,8 @@ namespace StarWarsApi
                 case ("Species"):
                     for (int i = 1; i < 4; i++)
                     {
-                        var Data = core.GetAllSpecies(i.ToString()).results;
-                        foreach (var item in Data)
+                        var Data = await core.GetAllSpecies(i.ToString());
+                        foreach (var item in Data.results)
                         {
                             valuePairs.Add(item.name, item.url);
                         }
@@ -77,8 +77,8 @@ namespace StarWarsApi
                 case ("StarShips"):
                     for (int i = 1; i < 4; i++)
                     {
-                        var Data = core.GetAllStarships(i.ToString()).results;
-                        foreach (var item in Data)
+                        var Data = await core.GetAllStarships(i.ToString());
+                        foreach (var item in Data.results)
                         {
                             valuePairs.Add(item.name, item.url);
                         }
@@ -87,8 +87,8 @@ namespace StarWarsApi
                 case ("Vehicles"):
                     for (int i = 1; i < 4; i++)
                     {
-                        var Data = core.GetAllVehicles(i.ToString()).results;
-                        foreach (var item in Data)
+                        var Data = await core.GetAllVehicles(i.ToString());
+                        foreach (var item in Data.results)
                         {
                             valuePairs.Add(item.name, item.url);
                         }

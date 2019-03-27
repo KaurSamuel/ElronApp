@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -18,7 +18,7 @@ namespace StarWarsApi
     [Activity(Label = "ItemActivity")]
     public class ItemActivity : Activity
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.DetailsLayout);
@@ -37,7 +37,7 @@ namespace StarWarsApi
             switch (option)
             {
                 case ("Planets"):
-                    itemInfo = core.GetSingleByUrl<Planet>(url);
+                    itemInfo = await core.GetSingleByUrl<Planet>(url);
                     var itemDic=DictionaryFromType(itemInfo);
 
                     foreach (var item in itemDic)
@@ -63,27 +63,27 @@ namespace StarWarsApi
                                 switch (category)
                                 {
                                     case ("Planets"):
-                                        Planet planetResult = core.GetSingleByUrl<Planet>(listItem);
+                                        Planet planetResult = await core.GetSingleByUrl<Planet>(listItem);
                                         stringList.Add(planetResult.name);
                                         break;
                                     case ("People"):
-                                        People peopleResult = core.GetSingleByUrl<People>(listItem);
+                                        People peopleResult = await core.GetSingleByUrl<People>(listItem);
                                         stringList.Add(peopleResult.name);
                                         break;
                                     case ("Films"):
-                                        Film filmResult = core.GetSingleByUrl<Film>(listItem);
+                                        Film filmResult = await core.GetSingleByUrl<Film>(listItem);
                                         stringList.Add(filmResult.title);
                                         break;
                                     case ("Species"):
-                                        Specie speciesResult = core.GetSingleByUrl<Specie>(listItem);
+                                        Specie speciesResult = await core.GetSingleByUrl<Specie>(listItem);
                                         stringList.Add(speciesResult.name);
                                         break;
                                     case ("Starships"):
-                                        Starship starshipResult = core.GetSingleByUrl<Starship>(listItem);
+                                        Starship starshipResult = await core.GetSingleByUrl<Starship>(listItem);
                                         stringList.Add(starshipResult.name);
                                         break;
                                     case ("Vehicles"):
-                                        Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(listItem);
+                                        Vehicle vehicleResult = await core.GetSingleByUrl<Vehicle>(listItem);
                                         stringList.Add(vehicleResult.name);
                                         break;
                                 }
@@ -98,27 +98,27 @@ namespace StarWarsApi
                             switch (category)
                             {
                                 case ("Planets"):
-                                    Planet planetResult = core.GetSingleByUrl<Planet>(item.Value.ToString());
+                                    Planet planetResult = await core.GetSingleByUrl<Planet>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(planetResult.name);
                                     break;
                                 case ("People"):
-                                    People peopleResult = core.GetSingleByUrl<People>(item.Value.ToString());
+                                    People peopleResult = await core.GetSingleByUrl<People>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(peopleResult.name);
                                     break;
                                 case ("Films"):
-                                    Film filmResult = core.GetSingleByUrl<Film>(item.Value.ToString());
+                                    Film filmResult = await core.GetSingleByUrl<Film>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(filmResult.title);
                                     break;
                                 case ("Species"):
-                                    Specie speciesResult = core.GetSingleByUrl<Specie>(item.Value.ToString());
+                                    Specie speciesResult = await core.GetSingleByUrl<Specie>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(speciesResult.name);
                                     break;
                                 case ("Starships"):
-                                    Starship starshipResult = core.GetSingleByUrl<Starship>(item.Value.ToString());
+                                    Starship starshipResult = await core.GetSingleByUrl<Starship>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(starshipResult.name);
                                     break;
                                 case ("Vehicles"):
-                                    Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(item.Value.ToString());
+                                    Vehicle vehicleResult = await core.GetSingleByUrl<Vehicle>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(vehicleResult.name);
                                     break;
                             }
@@ -130,7 +130,7 @@ namespace StarWarsApi
                     }
                     break;
                 case ("People"):
-                    itemInfo = core.GetSingleByUrl<People>(url);
+                    itemInfo = await core.GetSingleByUrl<People>(url);
 
                     itemDic = DictionaryFromType(itemInfo);
 
@@ -157,27 +157,27 @@ namespace StarWarsApi
                                 switch (category)
                                 {
                                     case ("Planets"):
-                                        Planet planetResult = core.GetSingleByUrl<Planet>(listItem);
+                                        Planet planetResult = await core.GetSingleByUrl<Planet>(listItem);
                                         stringList.Add(planetResult.name);
                                         break;
                                     case ("People"):
-                                        People peopleResult = core.GetSingleByUrl<People>(listItem);
+                                        People peopleResult = await core.GetSingleByUrl<People>(listItem);
                                         stringList.Add(peopleResult.name);
                                         break;
                                     case ("Films"):
-                                        Film filmResult = core.GetSingleByUrl<Film>(listItem);
+                                        Film filmResult = await core.GetSingleByUrl<Film>(listItem);
                                         stringList.Add(filmResult.title);
                                         break;
                                     case ("Species"):
-                                        Specie speciesResult = core.GetSingleByUrl<Specie>(listItem);
+                                        Specie speciesResult = await core.GetSingleByUrl<Specie>(listItem);
                                         stringList.Add(speciesResult.name);
                                         break;
                                     case ("Starships"):
-                                        Starship starshipResult = core.GetSingleByUrl<Starship>(listItem);
+                                        Starship starshipResult = await core.GetSingleByUrl<Starship>(listItem);
                                         stringList.Add(starshipResult.name);
                                         break;
                                     case ("Vehicles"):
-                                        Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(listItem);
+                                        Vehicle vehicleResult = await core.GetSingleByUrl<Vehicle>(listItem);
                                         stringList.Add(vehicleResult.name);
                                         break;
                                 }
@@ -192,27 +192,27 @@ namespace StarWarsApi
                             switch (category)
                             {
                                 case ("Planets"):
-                                    Planet planetResult = core.GetSingleByUrl<Planet>(item.Value.ToString());
+                                    Planet planetResult = await core.GetSingleByUrl<Planet>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(planetResult.name);
                                     break;
                                 case ("People"):
-                                    People peopleResult = core.GetSingleByUrl<People>(item.Value.ToString());
+                                    People peopleResult = await core.GetSingleByUrl<People>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(peopleResult.name);
                                     break;
                                 case ("Films"):
-                                    Film filmResult = core.GetSingleByUrl<Film>(item.Value.ToString());
+                                    Film filmResult = await core.GetSingleByUrl<Film>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(filmResult.title);
                                     break;
                                 case ("Species"):
-                                    Specie speciesResult = core.GetSingleByUrl<Specie>(item.Value.ToString());
+                                    Specie speciesResult = await core.GetSingleByUrl<Specie>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(speciesResult.name);
                                     break;
                                 case ("Starships"):
-                                    Starship starshipResult = core.GetSingleByUrl<Starship>(item.Value.ToString());
+                                    Starship starshipResult = await core.GetSingleByUrl<Starship>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(starshipResult.name);
                                     break;
                                 case ("Vehicles"):
-                                    Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(item.Value.ToString());
+                                    Vehicle vehicleResult = await core.GetSingleByUrl<Vehicle>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(vehicleResult.name);
                                     break;
                             }
@@ -224,7 +224,7 @@ namespace StarWarsApi
                     }
                     break;
                 case ("Films"):
-                    itemInfo = core.GetSingleByUrl<Film>(url);
+                    itemInfo = await core.GetSingleByUrl<Film>(url);
 
                     itemDic = DictionaryFromType(itemInfo);
 
@@ -259,27 +259,27 @@ namespace StarWarsApi
                                 switch (category)
                                 {
                                     case ("Planets"):
-                                        Planet planetResult = core.GetSingleByUrl<Planet>(listItem);
+                                        Planet planetResult = await core.GetSingleByUrl<Planet>(listItem);
                                         stringList.Add(planetResult.name);
                                         break;
                                     case ("People"):
-                                        People peopleResult = core.GetSingleByUrl<People>(listItem);
+                                        People peopleResult = await core.GetSingleByUrl<People>(listItem);
                                         stringList.Add(peopleResult.name);
                                         break;
                                     case ("Films"):
-                                        Film filmResult = core.GetSingleByUrl<Film>(listItem);
+                                        Film filmResult = await core.GetSingleByUrl<Film>(listItem);
                                         stringList.Add(filmResult.title);
                                         break;
                                     case ("Species"):
-                                        Specie speciesResult = core.GetSingleByUrl<Specie>(listItem);
+                                        Specie speciesResult = await core.GetSingleByUrl<Specie>(listItem);
                                         stringList.Add(speciesResult.name);
                                         break;
                                     case ("Starships"):
-                                        Starship starshipResult = core.GetSingleByUrl<Starship>(listItem);
+                                        Starship starshipResult = await core.GetSingleByUrl<Starship>(listItem);
                                         stringList.Add(starshipResult.name);
                                         break;
                                     case ("Vehicles"):
-                                        Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(listItem);
+                                        Vehicle vehicleResult = await core.GetSingleByUrl<Vehicle>(listItem);
                                         stringList.Add(vehicleResult.name);
                                         break;
                                 }
@@ -294,27 +294,27 @@ namespace StarWarsApi
                             switch (category)
                             {
                                 case ("Planets"):
-                                    Planet planetResult = core.GetSingleByUrl<Planet>(item.Value.ToString());
+                                    Planet planetResult = await core.GetSingleByUrl<Planet>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(planetResult.name);
                                     break;
                                 case ("People"):
-                                    People peopleResult = core.GetSingleByUrl<People>(item.Value.ToString());
+                                    People peopleResult = await core.GetSingleByUrl<People>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(peopleResult.name);
                                     break;
                                 case ("Films"):
-                                    Film filmResult = core.GetSingleByUrl<Film>(item.Value.ToString());
+                                    Film filmResult = await core.GetSingleByUrl<Film>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(filmResult.title);
                                     break;
                                 case ("Species"):
-                                    Specie speciesResult = core.GetSingleByUrl<Specie>(item.Value.ToString());
+                                    Specie speciesResult = await core.GetSingleByUrl<Specie>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(speciesResult.name);
                                     break;
                                 case ("Starships"):
-                                    Starship starshipResult = core.GetSingleByUrl<Starship>(item.Value.ToString());
+                                    Starship starshipResult = await core.GetSingleByUrl<Starship>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(starshipResult.name);
                                     break;
                                 case ("Vehicles"):
-                                    Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(item.Value.ToString());
+                                    Vehicle vehicleResult = await core.GetSingleByUrl<Vehicle>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(vehicleResult.name);
                                     break;
                             }
@@ -326,7 +326,7 @@ namespace StarWarsApi
                     }
                     break;
                 case ("Species"):
-                    itemInfo = core.GetSingleByUrl<Specie>(url);
+                    itemInfo = await core.GetSingleByUrl<Specie>(url);
 
                     itemDic = DictionaryFromType(itemInfo);
 
@@ -343,7 +343,7 @@ namespace StarWarsApi
                             itemStrings.PropertyValues.Add("unknown");
                         }
 
-                        else if (item.Value.GetType() == typeof(List<string>))
+                        else if (item.Value.GetType()==typeof(List<string>))
                         {
                             List<string> stringList = new List<string>();
 
@@ -354,27 +354,27 @@ namespace StarWarsApi
                                 switch (category)
                                 {
                                     case ("Planets"):
-                                        Planet planetResult = core.GetSingleByUrl<Planet>(listItem);
+                                        Planet planetResult = await core.GetSingleByUrl<Planet>(listItem);
                                         stringList.Add(planetResult.name);
                                         break;
                                     case ("People"):
-                                        People peopleResult = core.GetSingleByUrl<People>(listItem);
+                                        People peopleResult = await core.GetSingleByUrl<People>(listItem);
                                         stringList.Add(peopleResult.name);
                                         break;
                                     case ("Films"):
-                                        Film filmResult = core.GetSingleByUrl<Film>(listItem);
+                                        Film filmResult = await core.GetSingleByUrl<Film>(listItem);
                                         stringList.Add(filmResult.title);
                                         break;
                                     case ("Species"):
-                                        Specie speciesResult = core.GetSingleByUrl<Specie>(listItem);
+                                        Specie speciesResult = await core.GetSingleByUrl<Specie>(listItem);
                                         stringList.Add(speciesResult.name);
                                         break;
                                     case ("Starships"):
-                                        Starship starshipResult = core.GetSingleByUrl<Starship>(listItem);
+                                        Starship starshipResult = await core.GetSingleByUrl<Starship>(listItem);
                                         stringList.Add(starshipResult.name);
                                         break;
                                     case ("Vehicles"):
-                                        Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(listItem);
+                                        Vehicle vehicleResult = await core.GetSingleByUrl<Vehicle>(listItem);
                                         stringList.Add(vehicleResult.name);
                                         break;
                                 }
@@ -389,27 +389,27 @@ namespace StarWarsApi
                             switch (category)
                             {
                                 case ("Planets"):
-                                    Planet planetResult = core.GetSingleByUrl<Planet>(item.Value.ToString());
+                                    Planet planetResult = await core.GetSingleByUrl<Planet>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(planetResult.name);
                                     break;
                                 case ("People"):
-                                    People peopleResult = core.GetSingleByUrl<People>(item.Value.ToString());
+                                    People peopleResult = await core.GetSingleByUrl<People>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(peopleResult.name);
                                     break;
                                 case ("Films"):
-                                    Film filmResult = core.GetSingleByUrl<Film>(item.Value.ToString());
+                                    Film filmResult = await core.GetSingleByUrl<Film>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(filmResult.title);
                                     break;
                                 case ("Species"):
-                                    Specie speciesResult = core.GetSingleByUrl<Specie>(item.Value.ToString());
+                                    Specie speciesResult = await core.GetSingleByUrl<Specie>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(speciesResult.name);
                                     break;
                                 case ("Starships"):
-                                    Starship starshipResult = core.GetSingleByUrl<Starship>(item.Value.ToString());
+                                    Starship starshipResult = await core.GetSingleByUrl<Starship>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(starshipResult.name);
                                     break;
                                 case ("Vehicles"):
-                                    Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(item.Value.ToString());
+                                    Vehicle vehicleResult = await core.GetSingleByUrl<Vehicle>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(vehicleResult.name);
                                     break;
                             }
@@ -421,7 +421,7 @@ namespace StarWarsApi
                     }
                     break;
                 case ("StarShips"):
-                    itemInfo = core.GetSingleByUrl<Starship>(url);
+                    itemInfo = await core.GetSingleByUrl<Starship>(url);
 
                     itemDic = DictionaryFromType(itemInfo);
 
@@ -448,27 +448,27 @@ namespace StarWarsApi
                                 switch (category)
                                 {
                                     case ("Planets"):
-                                        Planet planetResult = core.GetSingleByUrl<Planet>(listItem);
+                                        Planet planetResult = await core.GetSingleByUrl<Planet>(listItem);
                                         stringList.Add(planetResult.name);
                                         break;
                                     case ("People"):
-                                        People peopleResult = core.GetSingleByUrl<People>(listItem);
+                                        People peopleResult = await core.GetSingleByUrl<People>(listItem);
                                         stringList.Add(peopleResult.name);
                                         break;
                                     case ("Films"):
-                                        Film filmResult = core.GetSingleByUrl<Film>(listItem);
+                                        Film filmResult = await core.GetSingleByUrl<Film>(listItem);
                                         stringList.Add(filmResult.title);
                                         break;
                                     case ("Species"):
-                                        Specie speciesResult = core.GetSingleByUrl<Specie>(listItem);
+                                        Specie speciesResult = await core.GetSingleByUrl<Specie>(listItem);
                                         stringList.Add(speciesResult.name);
                                         break;
                                     case ("Starships"):
-                                        Starship starshipResult = core.GetSingleByUrl<Starship>(listItem);
+                                        Starship starshipResult = await core.GetSingleByUrl<Starship>(listItem);
                                         stringList.Add(starshipResult.name);
                                         break;
                                     case ("Vehicles"):
-                                        Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(listItem);
+                                        Vehicle vehicleResult = await core.GetSingleByUrl<Vehicle>(listItem);
                                         stringList.Add(vehicleResult.name);
                                         break;
                                 }
@@ -483,27 +483,27 @@ namespace StarWarsApi
                             switch (category)
                             {
                                 case ("Planets"):
-                                    Planet planetResult = core.GetSingleByUrl<Planet>(item.Value.ToString());
+                                    Planet planetResult = await core.GetSingleByUrl<Planet>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(planetResult.name);
                                     break;
                                 case ("People"):
-                                    People peopleResult = core.GetSingleByUrl<People>(item.Value.ToString());
+                                    People peopleResult = await core.GetSingleByUrl<People>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(peopleResult.name);
                                     break;
                                 case ("Films"):
-                                    Film filmResult = core.GetSingleByUrl<Film>(item.Value.ToString());
+                                    Film filmResult = await core.GetSingleByUrl<Film>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(filmResult.title);
                                     break;
                                 case ("Species"):
-                                    Specie speciesResult = core.GetSingleByUrl<Specie>(item.Value.ToString());
+                                    Specie speciesResult = await core.GetSingleByUrl<Specie>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(speciesResult.name);
                                     break;
                                 case ("Starships"):
-                                    Starship starshipResult = core.GetSingleByUrl<Starship>(item.Value.ToString());
+                                    Starship starshipResult = await core.GetSingleByUrl<Starship>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(starshipResult.name);
                                     break;
                                 case ("Vehicles"):
-                                    Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(item.Value.ToString());
+                                    Vehicle vehicleResult = await core.GetSingleByUrl<Vehicle>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(vehicleResult.name);
                                     break;
                             }
@@ -515,7 +515,7 @@ namespace StarWarsApi
                     }
                     break;
                 case ("Vehicles"):
-                    itemInfo = core.GetSingleByUrl<Vehicle>(url);
+                    itemInfo = await core.GetSingleByUrl<Vehicle>(url);
 
                     itemDic = DictionaryFromType(itemInfo);
 
@@ -542,27 +542,27 @@ namespace StarWarsApi
                                 switch (category)
                                 {
                                     case ("Planets"):
-                                        Planet planetResult = core.GetSingleByUrl<Planet>(listItem);
+                                        Planet planetResult = await core.GetSingleByUrl<Planet>(listItem);
                                         stringList.Add(planetResult.name);
                                         break;
                                     case ("People"):
-                                        People peopleResult = core.GetSingleByUrl<People>(listItem);
+                                        People peopleResult = await core.GetSingleByUrl<People>(listItem);
                                         stringList.Add(peopleResult.name);
                                         break;
                                     case ("Films"):
-                                        Film filmResult = core.GetSingleByUrl<Film>(listItem);
+                                        Film filmResult = await core.GetSingleByUrl<Film>(listItem);
                                         stringList.Add(filmResult.title);
                                         break;
                                     case ("Species"):
-                                        Specie speciesResult = core.GetSingleByUrl<Specie>(listItem);
+                                        Specie speciesResult = await core.GetSingleByUrl<Specie>(listItem);
                                         stringList.Add(speciesResult.name);
                                         break;
                                     case ("Starships"):
-                                        Starship starshipResult = core.GetSingleByUrl<Starship>(listItem);
+                                        Starship starshipResult = await core.GetSingleByUrl<Starship>(listItem);
                                         stringList.Add(starshipResult.name);
                                         break;
                                     case ("Vehicles"):
-                                        Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(listItem);
+                                        Vehicle vehicleResult = await core.GetSingleByUrl<Vehicle>(listItem);
                                         stringList.Add(vehicleResult.name);
                                         break;
                                 }
@@ -577,27 +577,27 @@ namespace StarWarsApi
                             switch (category)
                             {
                                 case ("Planets"):
-                                    Planet planetResult = core.GetSingleByUrl<Planet>(item.Value.ToString());
+                                    Planet planetResult = await core.GetSingleByUrl<Planet>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(planetResult.name);
                                     break;
                                 case ("People"):
-                                    People peopleResult = core.GetSingleByUrl<People>(item.Value.ToString());
+                                    People peopleResult = await core.GetSingleByUrl<People>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(peopleResult.name);
                                     break;
                                 case ("Films"):
-                                    Film filmResult = core.GetSingleByUrl<Film>(item.Value.ToString());
+                                    Film filmResult = await core.GetSingleByUrl<Film>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(filmResult.title);
                                     break;
                                 case ("Species"):
-                                    Specie speciesResult = core.GetSingleByUrl<Specie>(item.Value.ToString());
+                                    Specie speciesResult = await core.GetSingleByUrl<Specie>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(speciesResult.name);
                                     break;
                                 case ("Starships"):
-                                    Starship starshipResult = core.GetSingleByUrl<Starship>(item.Value.ToString());
+                                    Starship starshipResult = await core.GetSingleByUrl<Starship>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(starshipResult.name);
                                     break;
                                 case ("Vehicles"):
-                                    Vehicle vehicleResult = core.GetSingleByUrl<Vehicle>(item.Value.ToString());
+                                    Vehicle vehicleResult = await core.GetSingleByUrl<Vehicle>(item.Value.ToString());
                                     itemStrings.PropertyValues.Add(vehicleResult.name);
                                     break;
                             }
