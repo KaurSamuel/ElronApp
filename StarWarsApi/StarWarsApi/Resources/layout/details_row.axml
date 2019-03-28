@@ -20,7 +20,7 @@
 			android:textColor="#FFD800"
 			android:id="@+id/textView_Key"
 			android:layout_marginLeft="2.0dp"
-		    android:layout_weight="0.1"/>
+		    android:layout_weight="0.01"/>
 		<TextView
 			android:text="Content"
 			android:textAppearance="?android:attr/textAppearanceMedium"
@@ -29,7 +29,7 @@
 			android:layout_height="wrap_content"
 			android:id="@+id/textView_Value"
 			android:gravity="center_vertical|right"
-			android:layout_weight="9.9"
+			android:layout_weight="9.99"
 			android:layout_marginRight="2.0dp" />
 			
 	</LinearLayout>
