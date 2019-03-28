@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Acr.UserDialogs;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -22,75 +22,110 @@ namespace StarWarsApi
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.list_layout);
 
-            ProgressBar prBar = FindViewById<ProgressBar>(Resource.Id.progressBar1);
-            prBar.Indeterminate = true;
-            prBar.Visibility = ViewStates.Visible;
-
             SharpTrooperCore core = new SharpTrooperCore();
 
             List<string> nameList = new List<string>();
             Dictionary<string, string> valuePairs = new Dictionary<string, string>();
             string option = Intent.GetSerializableExtra("ButtonName").ToString();
-
             switch (option)
             {
                 case ("Planets"):
-                    for (int i = 1; i < 7; i++)
+                    using (UserDialogs.Instance.Loading())
                     {
-                        var Data = await core.GetAllPlanets(i.ToString());
-                        foreach (var item in Data.results)
+                        for (int i = 1; i < 7; i++)
                         {
-                            valuePairs.Add(item.name, item.url);
+                            SharpEntityResults<Planet> Data;
+                            Data = await core.GetAllPlanets(i.ToString());
+
+                            foreach (var item in Data.results)
+                            {
+                                valuePairs.Add(item.name, item.url);
+                            }
                         }
                     }
                     break;
                 case ("People"):
-                    for (int i = 1; i < 9; i++)
+                    using (UserDialogs.Instance.Loading())
                     {
-                        var Data = await core.GetAllPeople(i.ToString());
-                        foreach (var item in Data.results)
+                        for (int i = 1; i < 9; i++)
                         {
-                            valuePairs.Add(item.name, item.url);
+                            SharpEntityResults<People> Data;
+                            using (UserDialogs.Instance.Loading())
+                            {
+                                Data = await core.GetAllPeople(i.ToString());
+                            }
+                            foreach (var item in Data.results)
+                            {
+                                valuePairs.Add(item.name, item.url);
+                            }
                         }
                     }
                     break;
                 case ("Films"):
-                    for (int i = 1; i < 2; i++)
+                    using (UserDialogs.Instance.Loading())
                     {
-                        var Data = await core.GetAllFilms(i.ToString());
-                        foreach (var item in Data.results)
+                        for (int i = 1; i < 2; i++)
                         {
-                            valuePairs.Add(item.title, item.url);
+                            SharpEntityResults<Film> Data;
+                            using (UserDialogs.Instance.Loading())
+                            {
+                                Data = await core.GetAllFilms(i.ToString());
+                            }
+                            foreach (var item in Data.results)
+                            {
+                                valuePairs.Add(item.title, item.url);
+                            }
                         }
                     }
                     break;
                 case ("Species"):
-                    for (int i = 1; i < 4; i++)
+                    using (UserDialogs.Instance.Loading())
                     {
-                        var Data = await core.GetAllSpecies(i.ToString());
-                        foreach (var item in Data.results)
+                        for (int i = 1; i < 4; i++)
                         {
-                            valuePairs.Add(item.name, item.url);
+                            SharpEntityResults<Specie> Data;
+                            using (UserDialogs.Instance.Loading())
+                            {
+                                Data = await core.GetAllSpecies(i.ToString());
+                            }
+                            foreach (var item in Data.results)
+                            {
+                                valuePairs.Add(item.name, item.url);
+                            }
                         }
                     }
                     break;
                 case ("StarShips"):
-                    for (int i = 1; i < 4; i++)
+                    using (UserDialogs.Instance.Loading())
                     {
-                        var Data = await core.GetAllStarships(i.ToString());
-                        foreach (var item in Data.results)
+                        for (int i = 1; i < 4; i++)
                         {
-                            valuePairs.Add(item.name, item.url);
+                            SharpEntityResults<Starship> Data;
+                            using (UserDialogs.Instance.Loading())
+                            {
+                                Data = await core.GetAllStarships(i.ToString());
+                            }
+                            foreach (var item in Data.results)
+                            {
+                                valuePairs.Add(item.name, item.url);
+                            }
                         }
                     }
                     break;
                 case ("Vehicles"):
-                    for (int i = 1; i < 4; i++)
+                    using (UserDialogs.Instance.Loading())
                     {
-                        var Data = await core.GetAllVehicles(i.ToString());
-                        foreach (var item in Data.results)
+                        for (int i = 1; i < 4; i++)
                         {
-                            valuePairs.Add(item.name, item.url);
+                            SharpEntityResults<Vehicle> Data;
+                            using (UserDialogs.Instance.Loading())
+                            {
+                                Data = await core.GetAllVehicles(i.ToString());
+                            }
+                            foreach (var item in Data.results)
+                            {
+                                valuePairs.Add(item.name, item.url);
+                            }
                         }
                     }
                     break;
@@ -102,7 +137,6 @@ namespace StarWarsApi
             
             ListView listview = FindViewById<ListView>(Resource.Id.listView_selectedOption);
             listview.Adapter = new CustomAdapter(this, nameList);
-            prBar.Visibility = ViewStates.Gone;
 
             listview.ItemClick += delegate (object sender, AdapterView.ItemClickEventArgs args)
               {
