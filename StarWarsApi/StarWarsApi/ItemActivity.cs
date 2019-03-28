@@ -13,6 +13,7 @@ using Android.Views;
 using Android.Widget;
 using SharpTrooper.Core;
 using SharpTrooper.Entities;
+using Xamarin.Essentials;
 
 namespace StarWarsApi
 {
@@ -23,7 +24,36 @@ namespace StarWarsApi
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.DetailsLayout);
+            Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
+            alert.SetTitle("No internet connection");
+            alert.SetMessage("You need internet connection to use this app");
 
+            alert.SetNegativeButton("OK", (senderAlert, args) => { });
+
+            Dialog dialog = alert.Create();
+
+
+
+            var current = Connectivity.NetworkAccess;
+            switch (current)
+            {
+                case NetworkAccess.Unknown:
+                    dialog.Show();
+                    break;
+                case NetworkAccess.None:
+                    dialog.Show();
+                    break;
+                case NetworkAccess.Local:
+                    dialog.Show();
+                    break;
+                case NetworkAccess.ConstrainedInternet:
+                    dialog.Show();
+                    break;
+                case NetworkAccess.Internet:
+                    break;
+                default:
+                    break;
+            }
             string option = Intent.GetSerializableExtra("OptionName").ToString();
             string itemName = Intent.GetSerializableExtra("ItemName").ToString();
             string url=Intent.GetSerializableExtra("ItemUrl").ToString();

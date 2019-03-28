@@ -10,6 +10,11 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Distribute;
+using Java.Interop;
+using System.IO;
+using Java.Lang;
+using Runtime = Java.Interop.Runtime;
+using Xamarin.Essentials;
 
 namespace StarWarsApi
 {
@@ -32,6 +37,39 @@ namespace StarWarsApi
             AppCenter.Start("013a6849-359c-489a-88db-974cce2c1722",
                    typeof(Analytics), typeof(Crashes),typeof(Distribute));
 
+            Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
+            alert.SetTitle("No internet connection");
+            alert.SetMessage("You need internet connection to use this app");
+
+            alert.SetNegativeButton("OK", (senderAlert, args) => {});
+
+            Dialog dialog = alert.Create();
+            
+
+
+            var current = Connectivity.NetworkAccess;
+            switch (current)
+            {
+                case NetworkAccess.Unknown:
+                    dialog.Show();
+                    break;
+                case NetworkAccess.None:
+                    dialog.Show();
+                    break;
+                case NetworkAccess.Local:
+                    dialog.Show();
+                    break;
+                case NetworkAccess.ConstrainedInternet:
+                    dialog.Show();
+                    break;
+                case NetworkAccess.Internet:
+                    break;
+                default:
+                    break;
+            }
+
+
+
             #region Button definitions
 
             imgplanets = FindViewById<ImageView>(Resource.Id.imageView_Planets);
@@ -53,7 +91,6 @@ namespace StarWarsApi
             imgpeople.Click += ButtonPeople_Click;
             #endregion
 
-            UserDialogs.Init(this); 
         }
 
         #region Buttons
