@@ -63,8 +63,8 @@ namespace SharpTrooper.Core
 
             try
             { 
-                var responseAsync= httpWebRequest.GetResponseAsync();
-                HttpWebResponse httpWebResponse = (HttpWebResponse)responseAsync.Result;
+                var responseAsync= await httpWebRequest.GetResponseAsync();
+                HttpWebResponse httpWebResponse = (HttpWebResponse)responseAsync;
 
                 StreamReader reader = new StreamReader(httpWebResponse.GetResponseStream());
                 result = reader.ReadToEnd();

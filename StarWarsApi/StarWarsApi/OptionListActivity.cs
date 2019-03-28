@@ -102,7 +102,7 @@ namespace StarWarsApi
             
             ListView listview = FindViewById<ListView>(Resource.Id.listView_selectedOption);
             listview.Adapter = new CustomAdapter(this, nameList);
-            //prBar.Visibility = ViewStates.Gone;
+            prBar.Visibility = ViewStates.Gone;
 
             listview.ItemClick += delegate (object sender, AdapterView.ItemClickEventArgs args)
               {
