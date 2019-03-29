@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
-using Android.Runtime;
 using Android.Widget;
 using System;
 using Android.Content;
@@ -10,10 +9,6 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Distribute;
-using Java.Interop;
-using System.IO;
-using Java.Lang;
-using Runtime = Java.Interop.Runtime;
 using Xamarin.Essentials;
 
 namespace StarWarsApi
@@ -44,8 +39,6 @@ namespace StarWarsApi
             alert.SetNegativeButton("OK", (senderAlert, args) => {});
 
             Dialog dialog = alert.Create();
-            
-
 
             var current = Connectivity.NetworkAccess;
             switch (current)
@@ -67,8 +60,6 @@ namespace StarWarsApi
                 default:
                     break;
             }
-
-
 
             #region Button definitions
             imgplanets = FindViewById<ImageView>(Resource.Id.imageView_Planets);
@@ -97,13 +88,10 @@ namespace StarWarsApi
 
         public void ButtonPlanets_Click(object sender, EventArgs e)
         {
-            //using (UserDialogs.Instance.Loading("wait..."))
-            //{
-                buttonName = "Planets";
-                var ListActivity = new Intent(this, typeof(OptionListActivity));
-                ListActivity.PutExtra("ButtonName", buttonName);
-                StartActivity(ListActivity);
-            //}
+            buttonName = "Planets";
+            var ListActivity = new Intent(this, typeof(OptionListActivity));
+            ListActivity.PutExtra("ButtonName", buttonName);
+            StartActivity(ListActivity);
         }
 
         public void ButtonPeople_Click(object sender, EventArgs e)

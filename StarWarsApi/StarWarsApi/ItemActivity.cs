@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Acr.UserDialogs;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using SharpTrooper.Core;
 using SharpTrooper.Entities;
@@ -31,8 +26,6 @@ namespace StarWarsApi
             alert.SetNegativeButton("OK", (senderAlert, args) => { });
 
             Dialog dialog = alert.Create();
-
-
 
             var current = Connectivity.NetworkAccess;
             switch (current)

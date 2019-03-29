@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Acr.UserDialogs;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using SharpTrooper.Core;
 using SharpTrooper.Entities;
@@ -67,7 +62,6 @@ namespace StarWarsApi
                                 {
                                     SharpEntityResults<Planet> Data;
                                     Data = await core.GetAllPlanets(i.ToString());
-
                                     foreach (var item in Data.results)
                                     {
                                         valuePairs.Add(item.name, item.url);
@@ -78,10 +72,7 @@ namespace StarWarsApi
                                 for (int i = 1; i < 9; i++)
                                 {
                                     SharpEntityResults<People> Data;
-                                    using (UserDialogs.Instance.Loading())
-                                    {
-                                        Data = await core.GetAllPeople(i.ToString());
-                                    }
+                                    Data = await core.GetAllPeople(i.ToString());
                                     foreach (var item in Data.results)
                                     {
                                         valuePairs.Add(item.name, item.url);
@@ -92,10 +83,7 @@ namespace StarWarsApi
                                 for (int i = 1; i < 2; i++)
                                 {
                                     SharpEntityResults<Film> Data;
-                                    using (UserDialogs.Instance.Loading())
-                                    {
-                                        Data = await core.GetAllFilms(i.ToString());
-                                    }
+                                    Data = await core.GetAllFilms(i.ToString());
                                     foreach (var item in Data.results)
                                     {
                                         valuePairs.Add(item.title, item.url);
@@ -106,10 +94,7 @@ namespace StarWarsApi
                                 for (int i = 1; i < 4; i++)
                                 {
                                     SharpEntityResults<Specie> Data;
-                                    using (UserDialogs.Instance.Loading())
-                                    {
-                                        Data = await core.GetAllSpecies(i.ToString());
-                                    }
+                                    Data = await core.GetAllSpecies(i.ToString());
                                     foreach (var item in Data.results)
                                     {
                                         valuePairs.Add(item.name, item.url);
@@ -120,10 +105,7 @@ namespace StarWarsApi
                                 for (int i = 1; i < 4; i++)
                                 {
                                     SharpEntityResults<Starship> Data;
-                                    using (UserDialogs.Instance.Loading())
-                                    {
-                                        Data = await core.GetAllStarships(i.ToString());
-                                    }
+                                    Data = await core.GetAllStarships(i.ToString());
                                     foreach (var item in Data.results)
                                     {
                                         valuePairs.Add(item.name, item.url);
@@ -135,10 +117,7 @@ namespace StarWarsApi
                                 for (int i = 1; i < 4; i++)
                                 {
                                     SharpEntityResults<Vehicle> Data;
-                                    using (UserDialogs.Instance.Loading())
-                                    {
-                                        Data = await core.GetAllVehicles(i.ToString());
-                                    }
+                                    Data = await core.GetAllVehicles(i.ToString());
                                     foreach (var item in Data.results)
                                     {
                                         valuePairs.Add(item.name, item.url);
