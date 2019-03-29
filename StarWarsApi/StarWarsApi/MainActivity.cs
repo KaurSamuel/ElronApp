@@ -71,7 +71,6 @@ namespace StarWarsApi
 
 
             #region Button definitions
-
             imgplanets = FindViewById<ImageView>(Resource.Id.imageView_Planets);
             imgpeople = FindViewById<ImageView>(Resource.Id.imageView_People);
             imgspecies = FindViewById<ImageView>(Resource.Id.imageView_Species);
@@ -91,6 +90,7 @@ namespace StarWarsApi
             imgpeople.Click += ButtonPeople_Click;
             #endregion
 
+            UserDialogs.Init(this);
         }
 
         #region Buttons

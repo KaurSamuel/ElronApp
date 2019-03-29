@@ -57,13 +57,12 @@ namespace StarWarsApi
                     break;
                 case NetworkAccess.Internet:
                     SharpTrooperCore core = new SharpTrooperCore();
-                    
-                    
-                    switch (option)
+
+                    using (UserDialogs.Instance.Loading())
                     {
-                        case ("Planets"):
-                            using (UserDialogs.Instance.Loading())
-                            {
+                        switch (option)
+                        {
+                            case ("Planets"):
                                 for (int i = 1; i < 7; i++)
                                 {
                                     SharpEntityResults<Planet> Data;
@@ -74,11 +73,8 @@ namespace StarWarsApi
                                         valuePairs.Add(item.name, item.url);
                                     }
                                 }
-                            }
-                            break;
-                        case ("People"):
-                            using (UserDialogs.Instance.Loading())
-                            {
+                                break;
+                            case ("People"):
                                 for (int i = 1; i < 9; i++)
                                 {
                                     SharpEntityResults<People> Data;
@@ -91,11 +87,8 @@ namespace StarWarsApi
                                         valuePairs.Add(item.name, item.url);
                                     }
                                 }
-                            }
-                            break;
-                        case ("Films"):
-                            using (UserDialogs.Instance.Loading())
-                            {
+                                break;
+                            case ("Films"):
                                 for (int i = 1; i < 2; i++)
                                 {
                                     SharpEntityResults<Film> Data;
@@ -108,11 +101,8 @@ namespace StarWarsApi
                                         valuePairs.Add(item.title, item.url);
                                     }
                                 }
-                            }
-                            break;
-                        case ("Species"):
-                            using (UserDialogs.Instance.Loading())
-                            {
+                                break;
+                            case ("Species"):
                                 for (int i = 1; i < 4; i++)
                                 {
                                     SharpEntityResults<Specie> Data;
@@ -125,11 +115,8 @@ namespace StarWarsApi
                                         valuePairs.Add(item.name, item.url);
                                     }
                                 }
-                            }
-                            break;
-                        case ("StarShips"):
-                            using (UserDialogs.Instance.Loading())
-                            {
+                                break;
+                            case ("StarShips"):
                                 for (int i = 1; i < 4; i++)
                                 {
                                     SharpEntityResults<Starship> Data;
@@ -142,11 +129,9 @@ namespace StarWarsApi
                                         valuePairs.Add(item.name, item.url);
                                     }
                                 }
-                            }
-                            break;
-                        case ("Vehicles"):
-                            using (UserDialogs.Instance.Loading())
-                            {
+                                break;
+                            case ("Vehicles"):
+                                
                                 for (int i = 1; i < 4; i++)
                                 {
                                     SharpEntityResults<Vehicle> Data;
@@ -159,10 +144,15 @@ namespace StarWarsApi
                                         valuePairs.Add(item.name, item.url);
                                     }
                                 }
-                            }
-                            break;
+                                break;
+                        }
+                        break;
                     }
-                    break;
+            }
+
+            foreach (KeyValuePair<string, string> kvp in valuePairs)
+            {
+                nameList.Add(kvp.Key);
             }
 
             ListView listview = FindViewById<ListView>(Resource.Id.listView_selectedOption);
