@@ -60,7 +60,7 @@ namespace StarWarsApi
                 default:
                     break;
             }
-
+            
             #region Button definitions
             imgplanets = FindViewById<ImageView>(Resource.Id.imageView_Planets);
             imgpeople = FindViewById<ImageView>(Resource.Id.imageView_People);

@@ -149,6 +149,14 @@ namespace StarWarsApi
                 ItemActivity.PutExtra("ItemUrl", url);
                 StartActivity(ItemActivity);
             };
+
+           
         }
+        public override void OnBackPressed()
+        {
+            this.Finish();
+            StartActivity(ItemActivity);
+        }
+
     }
 }
