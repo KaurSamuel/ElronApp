@@ -20,9 +20,17 @@ namespace SharpTrooper.Core
 
         private string apiUrl = "http://swapi.co/api";
         private string _proxyName = null;
+        public string _Category { get; set; }
+        public Dictionary<string, string> _ObjectPropertyNamesAndValues { get; set; }
 
         public SharpTrooperCore()
         {
+        }
+
+        public SharpTrooperCore(string category, Dictionary<string,string> ObjectPropertyNamesAndValues)
+        {
+            _Category = category;
+            _ObjectPropertyNamesAndValues = ObjectPropertyNamesAndValues;
         }
 
         public SharpTrooperCore(string proxyName)
@@ -286,5 +294,79 @@ namespace SharpTrooper.Core
         }
 
         #endregion
+
+        public async void GetListOfCategoryItems()
+        {
+            switch (_Category)
+            {
+                case ("Planets"):
+                    for (int i = 1; i < 7; i++)
+                    {
+                        SharpEntityResults<Planet> Data;
+                        Data = await GetAllPlanets(i.ToString());
+                        foreach (var item in Data.results)
+                        {
+                            _ObjectPropertyNamesAndValues.Add(item.name, item.url);
+                        }
+                    }
+                    break;
+                case ("People"):
+                    for (int i = 1; i < 9; i++)
+                    {
+                        SharpEntityResults<People> Data;
+                        Data = await GetAllPeople(i.ToString());
+                        foreach (var item in Data.results)
+                        {
+                            _ObjectPropertyNamesAndValues.Add(item.name, item.url);
+                        }
+                    }
+                    break;
+                case ("Films"):
+                    for (int i = 1; i < 2; i++)
+                    {
+                        SharpEntityResults<Film> Data;
+                        Data = await GetAllFilms(i.ToString());
+                        foreach (var item in Data.results)
+                        {
+                            _ObjectPropertyNamesAndValues.Add(item.title, item.url);
+                        }
+                    }
+                    break;
+                case ("Species"):
+                    for (int i = 1; i < 4; i++)
+                    {
+                        SharpEntityResults<Specie> Data;
+                        Data = await GetAllSpecies(i.ToString());
+                        foreach (var item in Data.results)
+                        {
+                            _ObjectPropertyNamesAndValues.Add(item.name, item.url);
+                        }
+                    }
+                    break;
+                case ("StarShips"):
+                    for (int i = 1; i < 4; i++)
+                    {
+                        SharpEntityResults<Starship> Data;
+                        Data = await GetAllStarships(i.ToString());
+                        foreach (var item in Data.results)
+                        {
+                            _ObjectPropertyNamesAndValues.Add(item.name, item.url);
+                        }
+                    }
+                    break;
+                case ("Vehicles"):
+
+                    for (int i = 1; i < 4; i++)
+                    {
+                        SharpEntityResults<Vehicle> Data;
+                        Data = await GetAllVehicles(i.ToString());
+                        foreach (var item in Data.results)
+                        {
+                            _ObjectPropertyNamesAndValues.Add(item.name, item.url);
+                        }
+                    }
+                    break;
+            }
+        }
     }
 }
