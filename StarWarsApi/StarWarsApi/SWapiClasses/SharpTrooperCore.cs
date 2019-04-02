@@ -303,7 +303,7 @@ namespace SharpTrooper.Core
                     for (int i = 1; i < 7; i++)
                     {
                         SharpEntityResults<Planet> Data;
-                        Data = await GetAllPlanets(i.ToString());
+                        Data = GetAllPlanets(i.ToString()).Result;
                         foreach (var item in Data.results)
                         {
                             _ObjectPropertyNamesAndValues.Add(item.name, item.url);
@@ -314,7 +314,7 @@ namespace SharpTrooper.Core
                     for (int i = 1; i < 9; i++)
                     {
                         SharpEntityResults<People> Data;
-                        Data = await GetAllPeople(i.ToString());
+                        Data = GetAllPeople(i.ToString()).Result;
                         foreach (var item in Data.results)
                         {
                             _ObjectPropertyNamesAndValues.Add(item.name, item.url);
@@ -325,7 +325,7 @@ namespace SharpTrooper.Core
                     for (int i = 1; i < 2; i++)
                     {
                         SharpEntityResults<Film> Data;
-                        Data = await GetAllFilms(i.ToString());
+                        Data = GetAllFilms(i.ToString()).Result;
                         foreach (var item in Data.results)
                         {
                             _ObjectPropertyNamesAndValues.Add(item.title, item.url);
@@ -336,7 +336,7 @@ namespace SharpTrooper.Core
                     for (int i = 1; i < 4; i++)
                     {
                         SharpEntityResults<Specie> Data;
-                        Data = await GetAllSpecies(i.ToString());
+                        Data = GetAllSpecies(i.ToString()).Result;
                         foreach (var item in Data.results)
                         {
                             _ObjectPropertyNamesAndValues.Add(item.name, item.url);
@@ -347,7 +347,7 @@ namespace SharpTrooper.Core
                     for (int i = 1; i < 4; i++)
                     {
                         SharpEntityResults<Starship> Data;
-                        Data = await GetAllStarships(i.ToString());
+                        Data = GetAllStarships(i.ToString()).Result;
                         foreach (var item in Data.results)
                         {
                             _ObjectPropertyNamesAndValues.Add(item.name, item.url);
@@ -359,7 +359,7 @@ namespace SharpTrooper.Core
                     for (int i = 1; i < 4; i++)
                     {
                         SharpEntityResults<Vehicle> Data;
-                        Data = await GetAllVehicles(i.ToString());
+                        Data = GetAllVehicles(i.ToString()).Result;
                         foreach (var item in Data.results)
                         {
                             _ObjectPropertyNamesAndValues.Add(item.name, item.url);

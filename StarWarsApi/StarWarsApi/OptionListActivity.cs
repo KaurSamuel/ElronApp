@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using Acr.UserDialogs;
 using Android.App;
 using Android.Content;
@@ -55,11 +56,17 @@ namespace StarWarsApi
                     SharpTrooperCore coreDic = new SharpTrooperCore(option,valuePairs);
 
                     ThreadStart childref = new ThreadStart(coreDic.GetListOfCategoryItems);
-                    using (UserDialogs.Instance.Loading())
-                    {
+                    //using (UserDialogs.Instance.Loading())
+                    //{
                         Thread childThread = new Thread(childref);
                         childThread.Start();
-                    }
+                        //childThread.Abort();
+                    //}
+                    //using (UserDialogs.Instance.Loading())
+                    //{
+                    //    await Task.Run(() => coreDic.GetListOfCategoryItems());
+                    //}
+
                     break;
             }
 
