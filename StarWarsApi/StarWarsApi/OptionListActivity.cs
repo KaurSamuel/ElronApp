@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using Acr.UserDialogs;
 using Android.App;
 using Android.Content;
@@ -51,82 +52,15 @@ namespace StarWarsApi
                     StartActivity(MainActivity);
                     break;
                 case NetworkAccess.Internet:
-                    SharpTrooperCore core = new SharpTrooperCore();
+                    SharpTrooperCore coreDic = new SharpTrooperCore(option,valuePairs);
 
+                    ThreadStart childref = new ThreadStart(coreDic.GetListOfCategoryItems);
                     using (UserDialogs.Instance.Loading())
                     {
-                        switch (option)
-                        {
-                            case ("Planets"):
-                                for (int i = 1; i < 7; i++)
-                                {
-                                    SharpEntityResults<Planet> Data;
-                                    Data = await core.GetAllPlanets(i.ToString());
-                                    foreach (var item in Data.results)
-                                    {
-                                        valuePairs.Add(item.name, item.url);
-                                    }
-                                }
-                                break;
-                            case ("People"):
-                                for (int i = 1; i < 9; i++)
-                                {
-                                    SharpEntityResults<People> Data;
-                                    Data = await core.GetAllPeople(i.ToString());
-                                    foreach (var item in Data.results)
-                                    {
-                                        valuePairs.Add(item.name, item.url);
-                                    }
-                                }
-                                break;
-                            case ("Films"):
-                                for (int i = 1; i < 2; i++)
-                                {
-                                    SharpEntityResults<Film> Data;
-                                    Data = await core.GetAllFilms(i.ToString());
-                                    foreach (var item in Data.results)
-                                    {
-                                        valuePairs.Add(item.title, item.url);
-                                    }
-                                }
-                                break;
-                            case ("Species"):
-                                for (int i = 1; i < 4; i++)
-                                {
-                                    SharpEntityResults<Specie> Data;
-                                    Data = await core.GetAllSpecies(i.ToString());
-                                    foreach (var item in Data.results)
-                                    {
-                                        valuePairs.Add(item.name, item.url);
-                                    }
-                                }
-                                break;
-                            case ("StarShips"):
-                                for (int i = 1; i < 4; i++)
-                                {
-                                    SharpEntityResults<Starship> Data;
-                                    Data = await core.GetAllStarships(i.ToString());
-                                    foreach (var item in Data.results)
-                                    {
-                                        valuePairs.Add(item.name, item.url);
-                                    }
-                                }
-                                break;
-                            case ("Vehicles"):
-                                
-                                for (int i = 1; i < 4; i++)
-                                {
-                                    SharpEntityResults<Vehicle> Data;
-                                    Data = await core.GetAllVehicles(i.ToString());
-                                    foreach (var item in Data.results)
-                                    {
-                                        valuePairs.Add(item.name, item.url);
-                                    }
-                                }
-                                break;
-                        }
-                        break;
+                        Thread childThread = new Thread(childref);
+                        childThread.Start();
                     }
+                    break;
             }
 
             foreach (KeyValuePair<string, string> kvp in valuePairs)
