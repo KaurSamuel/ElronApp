@@ -150,5 +150,11 @@ namespace StarWarsApi
                 StartActivity(ItemActivity);
             };
         }
+
+        public override void OnBackPressed()
+        {
+            Finish();
+            StartActivity(typeof(MainActivity));
+        }
     }
 }
