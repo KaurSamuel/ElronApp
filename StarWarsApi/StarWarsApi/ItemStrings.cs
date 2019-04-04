@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace StarWarsApi
 {
-    class ItemStrings
+    public class ItemStrings
     {
         public List<string> PropertyNames { get; set; }
         public List<string> PropertyValues { get; set; }
