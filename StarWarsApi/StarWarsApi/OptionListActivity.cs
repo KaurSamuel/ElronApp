@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using System.Collections.Generic;
+using Acr.UserDialogs;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using SharpTrooper.Core;
 using SharpTrooper.Entities;
@@ -18,7 +13,7 @@ namespace StarWarsApi
     [Activity(Label = "OptionListActivity")]
     public class OptionListActivity : Activity
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.list_layout);
@@ -31,7 +26,10 @@ namespace StarWarsApi
             Dialog dialog = alert.Create();
 
             var MainActivity = new Intent(this, typeof(MainActivity));
-            
+
+            List<string> nameList = new List<string>();
+            Dictionary<string, string> valuePairs = new Dictionary<string, string>();
+            string option = Intent.GetSerializableExtra("ButtonName").ToString();
 
             var current = Connectivity.NetworkAccess;
             switch (current)
@@ -53,31 +51,29 @@ namespace StarWarsApi
                     StartActivity(MainActivity);
                     break;
                 case NetworkAccess.Internet:
+                    SharpTrooperCore core = new SharpTrooperCore();
+
+                    using (UserDialogs.Instance.Loading())
                     {
-                        SharpTrooperCore core = new SharpTrooperCore();
-
-                        List<string> nameList = new List<string>();
-                        Dictionary<string, string> valuePairs = new Dictionary<string, string>();
-                        string option = Intent.GetSerializableExtra("ButtonName").ToString();
-
                         switch (option)
                         {
                             case ("Planets"):
                                 for (int i = 1; i < 7; i++)
                                 {
-                                    var Data = core.GetAllPlanets(i.ToString()).results;
-                                    foreach (var item in Data)
+                                    SharpEntityResults<Planet> Data;
+                                    Data = await core.GetAllPlanets(i.ToString());
+                                    foreach (var item in Data.results)
                                     {
                                         valuePairs.Add(item.name, item.url);
-
                                     }
                                 }
                                 break;
                             case ("People"):
                                 for (int i = 1; i < 9; i++)
                                 {
-                                    var Data = core.GetAllPeople(i.ToString()).results;
-                                    foreach (var item in Data)
+                                    SharpEntityResults<People> Data;
+                                    Data = await core.GetAllPeople(i.ToString());
+                                    foreach (var item in Data.results)
                                     {
                                         valuePairs.Add(item.name, item.url);
                                     }
@@ -86,8 +82,9 @@ namespace StarWarsApi
                             case ("Films"):
                                 for (int i = 1; i < 2; i++)
                                 {
-                                    var Data = core.GetAllFilms(i.ToString()).results;
-                                    foreach (var item in Data)
+                                    SharpEntityResults<Film> Data;
+                                    Data = await core.GetAllFilms(i.ToString());
+                                    foreach (var item in Data.results)
                                     {
                                         valuePairs.Add(item.title, item.url);
                                     }
@@ -96,8 +93,9 @@ namespace StarWarsApi
                             case ("Species"):
                                 for (int i = 1; i < 4; i++)
                                 {
-                                    var Data = core.GetAllSpecies(i.ToString()).results;
-                                    foreach (var item in Data)
+                                    SharpEntityResults<Specie> Data;
+                                    Data = await core.GetAllSpecies(i.ToString());
+                                    foreach (var item in Data.results)
                                     {
                                         valuePairs.Add(item.name, item.url);
                                     }
@@ -106,50 +104,57 @@ namespace StarWarsApi
                             case ("StarShips"):
                                 for (int i = 1; i < 4; i++)
                                 {
-                                    var Data = core.GetAllStarships(i.ToString()).results;
-                                    foreach (var item in Data)
+                                    SharpEntityResults<Starship> Data;
+                                    Data = await core.GetAllStarships(i.ToString());
+                                    foreach (var item in Data.results)
                                     {
                                         valuePairs.Add(item.name, item.url);
                                     }
                                 }
                                 break;
                             case ("Vehicles"):
+                                
                                 for (int i = 1; i < 4; i++)
                                 {
-                                    var Data = core.GetAllVehicles(i.ToString()).results;
-                                    foreach (var item in Data)
+                                    SharpEntityResults<Vehicle> Data;
+                                    Data = await core.GetAllVehicles(i.ToString());
+                                    foreach (var item in Data.results)
                                     {
                                         valuePairs.Add(item.name, item.url);
                                     }
                                 }
                                 break;
-                        };
-                        foreach (KeyValuePair<string, string> kvp in valuePairs)
-                        {
-                            nameList.Add(kvp.Key);
                         }
-
-                        ListView listview = FindViewById<ListView>(Resource.Id.listView_selectedOption);
-                        listview.Adapter = new CustomAdapter(this, nameList);
-
-                        listview.ItemClick += delegate (object sender, AdapterView.ItemClickEventArgs args)
-                        {
-                            var item = listview.Adapter.GetItem(args.Position).ToString();
-                            var url = valuePairs[item];
-
-                            int index = nameList.FindIndex(x => x == item);
-                            var ItemActivity = new Intent(this, typeof(ItemActivity));
-                            ItemActivity.PutExtra("OptionName", option);
-                            ItemActivity.PutExtra("ItemName", item);
-                            ItemActivity.PutExtra("ItemUrl", url);
-                            StartActivity(ItemActivity);
-                        };
+                        break;
                     }
-                    break;
-                default:
-                    break;
             }
-          
+
+            foreach (KeyValuePair<string, string> kvp in valuePairs)
+            {
+                nameList.Add(kvp.Key);
+            }
+
+            ListView listview = FindViewById<ListView>(Resource.Id.listView_selectedOption);
+            listview.Adapter = new CustomAdapter(this, nameList);
+
+            listview.ItemClick += delegate (object sender, AdapterView.ItemClickEventArgs args)
+            {
+                var item = listview.Adapter.GetItem(args.Position).ToString();
+                var url = valuePairs[item];
+
+                int index = nameList.FindIndex(x => x == item);
+                var ItemActivity = new Intent(this, typeof(ItemActivity));
+                ItemActivity.PutExtra("OptionName", option);
+                ItemActivity.PutExtra("ItemName", item);
+                ItemActivity.PutExtra("ItemUrl", url);
+                StartActivity(ItemActivity);
+            };
+        }
+
+        public override void OnBackPressed()
+        {
+            Finish();
+            StartActivity(typeof(MainActivity));
         }
     }
 }
