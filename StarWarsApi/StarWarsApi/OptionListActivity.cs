@@ -58,7 +58,7 @@ namespace StarWarsApi
                         switch (option)
                         {
                             case ("Planets"):
-                                for (int i = 1; i < 7; i++)
+                                for (int i = 1; i < 8; i++)
                                 {
                                     SharpEntityResults<Planet> Data;
                                     Data = await core.GetAllPlanets(i.ToString());
@@ -69,7 +69,7 @@ namespace StarWarsApi
                                 }
                                 break;
                             case ("People"):
-                                for (int i = 1; i < 9; i++)
+                                for (int i = 1; i < 10; i++)
                                 {
                                     SharpEntityResults<People> Data;
                                     Data = await core.GetAllPeople(i.ToString());
@@ -91,7 +91,7 @@ namespace StarWarsApi
                                 }
                                 break;
                             case ("Species"):
-                                for (int i = 1; i < 4; i++)
+                                for (int i = 1; i < 5; i++)
                                 {
                                     SharpEntityResults<Specie> Data;
                                     Data = await core.GetAllSpecies(i.ToString());
@@ -102,7 +102,7 @@ namespace StarWarsApi
                                 }
                                 break;
                             case ("StarShips"):
-                                for (int i = 1; i < 4; i++)
+                                for (int i = 1; i < 5; i++)
                                 {
                                     SharpEntityResults<Starship> Data;
                                     Data = await core.GetAllStarships(i.ToString());
@@ -114,7 +114,7 @@ namespace StarWarsApi
                                 break;
                             case ("Vehicles"):
                                 
-                                for (int i = 1; i < 4; i++)
+                                for (int i = 1; i < 5; i++)
                                 {
                                     SharpEntityResults<Vehicle> Data;
                                     Data = await core.GetAllVehicles(i.ToString());

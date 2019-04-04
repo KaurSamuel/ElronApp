@@ -195,10 +195,6 @@ namespace StarWarsApi
             listview.Adapter = new DetailsAdapter(this, itemStrings.PropertyNames, itemStrings.PropertyValues);
         }
 
-        /// code from https://stackoverflow.com/a/737159
-        /// <summary>
-        /// creates a dictionary with an object's property name as a key and the respective property's value as a value  
-        /// </summary>
         public static SortedDictionary<string, object> DictionaryFromType(object atype)
         {
             if (atype == null) return new SortedDictionary<string, object>();
