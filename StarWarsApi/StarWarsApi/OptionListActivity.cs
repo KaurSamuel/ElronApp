@@ -75,6 +75,8 @@ namespace StarWarsApi
                                     Data = await core.GetAllPeople(i.ToString());
                                     foreach (var item in Data.results)
                                     {
+                                        if (item.name == "Sly Moore")
+                                            continue;
                                         valuePairs.Add(item.name, item.url);
                                     }
                                 }
