@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Acr.UserDialogs;
 using Android.App;
@@ -104,6 +105,7 @@ namespace StarWarsApi
                 foreach (var item in itemDic)
                 {
                     string itemKey = item.Key;
+                   
                     if (itemKey == "name" || itemKey == "created" || itemKey == "edited" || itemKey == "url" || itemKey == "title" || itemKey == "vehicle_class")
                         continue;
                     itemKey = char.ToUpper(itemKey[0]) + itemKey.Substring(1).Replace("_", " ");
@@ -115,6 +117,7 @@ namespace StarWarsApi
                     }
                     else if (item.Value.GetType() == typeof(List<string>))
                     {
+                            
                         List<string> stringList = new List<string>();
 
                         foreach (var listItem in (List<string>)item.Value)
@@ -150,6 +153,10 @@ namespace StarWarsApi
                             }
                         }
                         string listToString = string.Join(", ", stringList);
+
+                        if (stringList.Count()==0)
+                            listToString = "unknown";
+
                         itemStrings.PropertyValues.Add(listToString);
                     }
                     else if (item.Value.ToString().StartsWith("https://swapi.co/api/"))
