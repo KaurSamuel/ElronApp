@@ -63,7 +63,6 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiSecvice.cs" />
     <Compile Include="CustomAdapter.cs" />
     <Compile Include="DetailsAdapter.cs" />
     <Compile Include="ItemActivity.cs" />
