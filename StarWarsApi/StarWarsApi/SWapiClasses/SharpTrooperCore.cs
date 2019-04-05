@@ -7,6 +7,7 @@ using SharpTrooper.Entities;
 using Newtonsoft.Json;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
+using StarWarsApi;
 
 namespace SharpTrooper.Core
 {
@@ -287,20 +288,21 @@ namespace SharpTrooper.Core
 
         #endregion
 
-        public void GetDictionaryOfItem(SortedDictionary<string,object> dictionary)
+        public async Task<ItemStrings> GetStringListsOfItemDictionary(SortedDictionary<string,object> dictionary)
         {
+            ItemStrings itemStringLists=new ItemStrings();
+
             foreach (var item in dictionary)
             {
                 string itemKey = item.Key;
-
                 if (itemKey == "name" || itemKey == "created" || itemKey == "edited" || itemKey == "url" || itemKey == "title" || itemKey == "vehicle_class")
                     continue;
                 itemKey = char.ToUpper(itemKey[0]) + itemKey.Substring(1).Replace("_", " ");
-                itemStrings.PropertyNames.Add(itemKey);
+                itemStringLists.PropertyNames.Add(itemKey);
 
                 if (item.Value == null)
                 {
-                    itemStrings.PropertyValues.Add("unknown");
+                    itemStringLists.PropertyValues.Add("unknown");
                 }
                 else if (item.Value.GetType() == typeof(List<string>))
                 {
@@ -314,37 +316,38 @@ namespace SharpTrooper.Core
                         switch (category)
                         {
                             case ("Planets"):
-                                Planet planetResult = await core.GetSingleByUrl<Planet>(listItem);
+                                Planet planetResult = await GetSingleByUrl<Planet>(listItem);
                                 stringList.Add(planetResult.name);
                                 break;
                             case ("People"):
-                                People peopleResult = await core.GetSingleByUrl<People>(listItem);
+                                People peopleResult = await GetSingleByUrl<People>(listItem);
                                 stringList.Add(peopleResult.name);
                                 break;
                             case ("Films"):
-                                Film filmResult = await core.GetSingleByUrl<Film>(listItem);
+                                Film filmResult = await GetSingleByUrl<Film>(listItem);
+                                await Task.Delay(100);
                                 stringList.Add(filmResult.title);
                                 break;
                             case ("Species"):
-                                Specie speciesResult = await core.GetSingleByUrl<Specie>(listItem);
+                                Specie speciesResult = await GetSingleByUrl<Specie>(listItem);
                                 stringList.Add(speciesResult.name);
                                 break;
                             case ("Starships"):
-                                Starship starshipResult = await core.GetSingleByUrl<Starship>(listItem);
+                                Starship starshipResult = await GetSingleByUrl<Starship>(listItem);
                                 stringList.Add(starshipResult.name);
                                 break;
                             case ("Vehicles"):
-                                Vehicle vehicleResult = await core.GetSingleByUrl<Vehicle>(listItem);
+                                Vehicle vehicleResult = await GetSingleByUrl<Vehicle>(listItem);
                                 stringList.Add(vehicleResult.name);
                                 break;
                         }
                     }
                     string listToString = string.Join(", ", stringList);
 
-                    if (stringList.Count() == 0)
+                    if (stringList.Count == 0)
                         listToString = "unknown";
 
-                    itemStrings.PropertyValues.Add(listToString);
+                    itemStringLists.PropertyValues.Add(listToString);
                 }
                 else if (item.Value.ToString().StartsWith("https://swapi.co/api/"))
                 {
@@ -353,36 +356,38 @@ namespace SharpTrooper.Core
                     switch (category)
                     {
                         case ("Planets"):
-                            Planet planetResult = await core.GetSingleByUrl<Planet>(item.Value.ToString());
-                            itemStrings.PropertyValues.Add(planetResult.name);
+                            Planet planetResult = await GetSingleByUrl<Planet>(item.Value.ToString());
+                            itemStringLists.PropertyValues.Add(planetResult.name);
                             break;
                         case ("People"):
-                            People peopleResult = await core.GetSingleByUrl<People>(item.Value.ToString());
-                            itemStrings.PropertyValues.Add(peopleResult.name);
+                            People peopleResult = await GetSingleByUrl<People>(item.Value.ToString());
+                            itemStringLists.PropertyValues.Add(peopleResult.name);
                             break;
                         case ("Films"):
-                            Film filmResult = await core.GetSingleByUrl<Film>(item.Value.ToString());
-                            itemStrings.PropertyValues.Add(filmResult.title);
+                            Film filmResult = await GetSingleByUrl<Film>(item.Value.ToString());
+                            itemStringLists.PropertyValues.Add(filmResult.title);
                             break;
                         case ("Species"):
-                            Specie speciesResult = await core.GetSingleByUrl<Specie>(item.Value.ToString());
-                            itemStrings.PropertyValues.Add(speciesResult.name);
+                            Specie speciesResult = await GetSingleByUrl<Specie>(item.Value.ToString());
+                            itemStringLists.PropertyValues.Add(speciesResult.name);
                             break;
                         case ("Starships"):
-                            Starship starshipResult = await core.GetSingleByUrl<Starship>(item.Value.ToString());
-                            itemStrings.PropertyValues.Add(starshipResult.name);
+                            Starship starshipResult = await GetSingleByUrl<Starship>(item.Value.ToString());
+                            itemStringLists.PropertyValues.Add(starshipResult.name);
                             break;
                         case ("Vehicles"):
-                            Vehicle vehicleResult = await core.GetSingleByUrl<Vehicle>(item.Value.ToString());
-                            itemStrings.PropertyValues.Add(vehicleResult.name);
+                            Vehicle vehicleResult = await GetSingleByUrl<Vehicle>(item.Value.ToString());
+                            itemStringLists.PropertyValues.Add(vehicleResult.name);
                             break;
                     }
                 }
                 else
                 {
-                    itemStrings.PropertyValues.Add(item.Value.ToString());
+                    itemStringLists.PropertyValues.Add(item.Value.ToString());
                 }
             }
+
+            return itemStringLists;
         }
     }
 }

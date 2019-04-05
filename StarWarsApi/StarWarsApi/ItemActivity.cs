@@ -20,6 +20,7 @@ namespace StarWarsApi
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.DetailsLayout);
+
             Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
             alert.SetTitle("No internet connection");
             alert.SetMessage("You need internet connection to use this app");
@@ -48,6 +49,7 @@ namespace StarWarsApi
                 default:
                     break;
             }
+
             string option = Intent.GetSerializableExtra("OptionName").ToString();
             string itemName = Intent.GetSerializableExtra("ItemName").ToString();
             string url=Intent.GetSerializableExtra("ItemUrl").ToString();
@@ -102,7 +104,7 @@ namespace StarWarsApi
                         break;
                 };
 
-                
+                itemStrings = await core.GetStringListsOfItemDictionary(itemDic);
             }
 
             ListView listview = FindViewById<ListView>(Resource.Id.listView_Item);

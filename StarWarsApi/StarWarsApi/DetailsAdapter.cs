@@ -11,7 +11,6 @@ namespace StarWarsApi
         ItemStrings itemLists=new ItemStrings();
         Activity context;
 
-
         public DetailsAdapter(Activity context, List<string> propertyNames, List<string> propertyValues) : base()
         {
             this.context = context;
