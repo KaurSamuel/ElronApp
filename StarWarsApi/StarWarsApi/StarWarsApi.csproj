@@ -141,11 +141,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\ListOfSelectedThingAttributes_activity.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\layout\list_layout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>

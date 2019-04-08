@@ -10,11 +10,9 @@
 		android:rowCount="4"
 		android:columnCount="2"
 		android:orientation="vertical"
-
 		android:foregroundTint="#ff000000"
 		android:backgroundTint="#ff000000"
 		android:weightSum="2">
-
 		<ImageView
 			android:src="@drawable/StarWarsPlanets"
 			android:id="@+id/imageView_Planets"
@@ -32,7 +30,6 @@
 			android:layout_column="0"
 			android:id="@+id/Planets"
 			android:layout_columnWeight="1"/>
-
 		<ImageView
 			android:src="@drawable/StarWarsPeople"
 			android:id="@+id/imageView_People"
@@ -52,7 +49,6 @@
 			android:layout_column="1"
 			android:id="@+id/People"
 		android:layout_columnWeight="1"/>
-
 		<ImageView
 			android:src="@drawable/StarWarsFilms"
 			android:id="@+id/imageView_Films"
@@ -83,7 +79,6 @@
 			android:layout_column="1"
 			android:id="@+id/Species"
 		android:layout_columnWeight="1"/>
-
 		<ImageView
 			android:src="@drawable/StarWarsStarships"
 			android:id="@+id/imageView_Starships"
@@ -99,7 +94,6 @@
 			android:layout_column="0"
 			android:id="@+id/StarShips"
 		android:layout_columnWeight="1"/>
-
 		<ImageView
 			android:src="@drawable/StarWarsVehicles"
 			android:id="@+id/imageView_Vehicles"
