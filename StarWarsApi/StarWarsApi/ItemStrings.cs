@@ -21,6 +21,7 @@ namespace StarWarsApi
         {
             PropertyNames = new List<string>();
             PropertyValues = new List<string>();
+            //lol IM primary gey
         }
     }
 }
