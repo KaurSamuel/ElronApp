@@ -1,0 +1,13 @@
+﻿<resources>
+  <string name="app_name">StarWarsApi</string>
+  <string name="action_settings">Iestatījumi</string>
+
+  <string name="Planets">Planētas</string>
+  <string name="People">Cilvēki</string>
+  <string name="StarShips">Kosmosa kuģis</string>
+  <string name="Species">Sugas</string>
+  <string name="Films">Filmas</string>
+  <string name="Vehicles">Transportlīdzekļi</string>
+
+</resources>
+

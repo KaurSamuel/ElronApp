@@ -1,13 +1,15 @@
 ﻿using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Util;
 
 namespace StarWarsApi
 {
-    [Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true)]
+    [Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true,
+        ConfigurationChanges = ConfigChanges.Locale | ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class SplashActivity : AppCompatActivity
     {
         static readonly string TAG = "X:" + typeof(SplashActivity).Name;
@@ -16,6 +18,8 @@ namespace StarWarsApi
         {
             base.OnCreate(savedInstanceState, persistentState);
             Log.Debug(TAG, "SplashActivity.OnCreate");
+
+            var lang = Resources.Configuration.Locale;
         }
 
         // Launches the startup task

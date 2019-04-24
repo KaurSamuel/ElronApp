@@ -22,7 +22,7 @@
 			android:layout_marginRight="0.5dp" 
 			android:layout_columnWeight="1"/>
 		<TextView
-			android:text="Planets"
+			android:text="@string/Planets"
 			android:textSize="27dip"
 			android:textColor="#FFD800"
 			android:layout_marginLeft="45.0dp"
@@ -41,7 +41,7 @@
 			android:layout_marginLeft="0.0dp"
 		android:layout_columnWeight="1"/>
 		<TextView
-			android:text="People"
+			android:text="@string/People"
 			android:textSize="27dip"
 			android:layout_marginLeft="45.0dp"
 			android:textColor="#FFD800"
@@ -56,7 +56,7 @@
 			android:layout_column="0"
 		android:layout_columnWeight="1"/>
 		<TextView
-			android:text="Films"
+			android:text="@string/Films"
 			android:textSize="27dip"
 			android:layout_marginLeft="45.0dp"
 			android:textColor="#FFD800"
@@ -71,7 +71,7 @@
 			android:layout_column="1"
 		android:layout_columnWeight="1"/>
 		<TextView
-			android:text="Species"
+			android:text="@string/Species"
 			android:textSize="27dip"
 			android:layout_marginLeft="45.0dp"
 			android:textColor="#FFD800"
@@ -86,7 +86,7 @@
 			android:layout_column="0"
 		android:layout_columnWeight="1"/>
 		<TextView
-			android:text="StarShips"
+			android:text="@string/StarShips"
 			android:textSize="27dip"
 			android:layout_marginLeft="45.0dp"
 			android:textColor="#FFD800"
@@ -101,7 +101,7 @@
 			android:layout_column="1"
 		android:layout_columnWeight="1"/>
 		<TextView
-			android:text="Vehicles"
+			android:text="@string/Vehicles"
 			android:textSize="27dip"
 			android:layout_marginLeft="45.0dp"
 			android:textColor="#FFD800"

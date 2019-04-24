@@ -1,4 +1,12 @@
 <resources>
-    <string name="app_name">StarWarsApi</string>
-    <string name="action_settings">Settings</string>
+  <string name="app_name">StarWarsApi</string>
+  <string name="action_settings">Settings</string>
+
+  <string name="Planets">Planets</string>
+  <string name="People">People</string>
+  <string name="StarShips">StarShips</string>
+  <string name="Species">Species</string>
+  <string name="Films">Films</string>
+  <string name="Vehicles">Vehicles</string>
+
 </resources>

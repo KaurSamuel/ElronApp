@@ -3467,6 +3467,24 @@ namespace StarWarsApi
 		public partial class String
 		{
 			
+			// aapt resource value: 0x7f0a0041
+			public const int Films = 2131361857;
+			
+			// aapt resource value: 0x7f0a003e
+			public const int People = 2131361854;
+			
+			// aapt resource value: 0x7f0a003d
+			public const int Planets = 2131361853;
+			
+			// aapt resource value: 0x7f0a0040
+			public const int Species = 2131361856;
+			
+			// aapt resource value: 0x7f0a003f
+			public const int StarShips = 2131361855;
+			
+			// aapt resource value: 0x7f0a0042
+			public const int Vehicles = 2131361858;
+			
 			// aapt resource value: 0x7f0a0000
 			public const int abc_action_bar_home_description = 2131361792;
 			
